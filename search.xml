@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>First Blog</title>
+    <url>/2022/07/04/First-Blog/</url>
+    <content><![CDATA[<h2 id="Typora常用快捷键"><a href="#Typora常用快捷键" class="headerlink" title="Typora常用快捷键"></a>Typora常用快捷键</h2><p><code>Ctrl+B</code>加粗</p>
+<p><code>Ctrl+I</code>斜体</p>
+<p><code>Ctrl+U</code>下划线</p>
+<p><code>Ctrl+1~6</code> 1-6级标题</p>
+<p><code>Ctrl+Shift+·</code> 代码块</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">```mermaid //召唤流程图</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="next居中引用"><a href="#next居中引用" class="headerlink" title="next居中引用"></a>next居中引用</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 其中 class=&quot;blockquote-center&quot; 是必须的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">class</span>=<span class="string">&quot;blockquote-center&quot;</span>&gt;</span>blah blah blah<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 标签 方式，要求版本在0.4.5或以上 --&gt;</span></span><br><span class="line">&#123;% centerquote %&#125;blah blah blah&#123;% endcenterquote %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 标签别名 --&gt;</span></span><br><span class="line">&#123;% cq %&#125; blah blah blah &#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="next首页文章部分显示"><a href="#next首页文章部分显示" class="headerlink" title="next首页文章部分显示"></a>next首页文章部分显示</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="hexo-pdf内嵌代码"><a href="#hexo-pdf内嵌代码" class="headerlink" title="hexo-pdf内嵌代码"></a>hexo-pdf内嵌代码</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">&quot;/pdf/name.pdf&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;1000&quot;</span> <span class="attr">type</span>=<span class="string">&quot;application/pdf&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="上传博客常用指令"><a href="#上传博客常用指令" class="headerlink" title="上传博客常用指令"></a>上传博客常用指令</h2><p><code>hexo new</code> 新建博客</p>
+<p>*删除直接在本地删除</p>
+<p><code>hexo g -d</code> 上传</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+      <categories>
+        <category>杂项</category>
+      </categories>
+      <tags>
+        <tag>Typora</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java笔记</title>
+    <url>/2022/07/11/Java%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="一、基础"><a href="#一、基础" class="headerlink" title="一、基础"></a>一、基础</h2><h3 id="0-IMPORTANT"><a href="#0-IMPORTANT" class="headerlink" title="0.IMPORTANT"></a>0.IMPORTANT</h3><ul>
+<li>此笔记仅记录新增(或我不熟悉的)内容，与cpp相同的内容在此笔记中忽略(所以并没有参考价值)</li>
+</ul>
+<h3 id="1-程序结构"><a href="#1-程序结构" class="headerlink" title="1.程序结构"></a>1.程序结构</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Name</span> &#123; <span class="comment">// 定义类</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123; <span class="comment">// 主方法，定义方法须与样例完全一致</span></span><br><span class="line">		<span class="comment">//do something</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>文件名与类名一致</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="2-数据类型"><a href="#2-数据类型" class="headerlink" title="2.数据类型"></a>2.数据类型</h3><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">空间</th>
+<th align="center">范围</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">byte</td>
+<td align="center">8</td>
+<td align="center">-2^7~2^7-1</td>
+<td align="center">8位=1byte</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">16</td>
+<td align="center">-2^15~2^15-1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">32</td>
+<td align="center">-2^31~2^31-1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">64</td>
+<td align="center">-2^63~2^63-1</td>
+<td align="center">数据末尾+L\l</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">32</td>
+<td align="center">较大</td>
+<td align="center">数据末尾+F\f</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">64</td>
+<td align="center">很大</td>
+<td align="center">数据末尾+D\d(默认)</td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">16</td>
+<td align="center">0~2^16</td>
+<td align="center">用’ ‘表示，使用Unicode</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center">0,1</td>
+<td align="center">不能进行类型转换</td>
+</tr>
+</tbody></table>
+<h3 id="3-转义符号"><a href="#3-转义符号" class="headerlink" title="3.转义符号"></a>3.转义符号</h3><table>
+<thead>
+<tr>
+<th align="left">转义</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">\ddd</td>
+<td>八进制数表示的字符</td>
+</tr>
+<tr>
+<td align="left">\uxxxx</td>
+<td>十六进制数表示的字符</td>
+</tr>
+<tr>
+<td align="left">\‘</td>
+<td>‘</td>
+</tr>
+<tr>
+<td align="left">\\</td>
+<td>\</td>
+</tr>
+<tr>
+<td align="left">\t</td>
+<td>制表符</td>
+</tr>
+<tr>
+<td align="left">\r</td>
+<td>回车</td>
+</tr>
+<tr>
+<td align="left">\n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td align="left">\b</td>
+<td>退格</td>
+</tr>
+<tr>
+<td align="left">\f</td>
+<td>换页</td>
+</tr>
+</tbody></table>
+<h3 id="4-标识符"><a href="#4-标识符" class="headerlink" title="4.标识符"></a>4.标识符</h3><ul>
+<li>由Unicode字母，数字，_，$构成，开头不能为数字</li>
+<li>变量声明与cpp相同<ul>
+<li>成员变量在类内</li>
+<li>局部变量在方法内</li>
+</ul>
+</li>
+<li>常量声明final</li>
+<li>静态声明static</li>
+</ul>
+<h3 id="5-位运算"><a href="#5-位运算" class="headerlink" title="5.位运算"></a>5.位运算</h3><ul>
+<li><p>可对byte,short,char,int,long运算</p>
+</li>
+<li><p>有~(取反)，&amp;(且)，|(或)</p>
+</li>
+<li><p>&lt;&lt;左移左侧舍弃，右侧补零，&gt;&gt;右移右侧舍弃，左侧按原最左位补数</p>
+</li>
+</ul>
+<h3 id="6-运算顺序"><a href="#6-运算顺序" class="headerlink" title="6.运算顺序"></a>6.运算顺序</h3><p><img src="/images/image-20220711175059568.png" alt="image-20220711175059568"></p>
+<h3 id="7-循环"><a href="#7-循环" class="headerlink" title="7.循环"></a>7.循环</h3><ul>
+<li>foreach<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> a:object)</span><br></pre></td></tr></table></figure>
+其他略</li>
+</ul>
+<h2 id="二、字符串String"><a href="#二、字符串String" class="headerlink" title="二、字符串String"></a>二、字符串String</h2><h3 id="1-声明方式"><a href="#1-声明方式" class="headerlink" title="1.声明方式"></a>1.声明方式</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s1=<span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">char</span> a[]=&#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>&#125;;</span><br><span class="line">String s2=<span class="keyword">new</span> <span class="title class_">String</span>(a);</span><br><span class="line">String s3=<span class="keyword">new</span> <span class="title class_">String</span>(a,<span class="number">1</span>,<span class="number">2</span>);<span class="comment">//&quot;bc&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-常用方法"><a href="#2-常用方法" class="headerlink" title="2.常用方法"></a>2.常用方法</h3><h4 id="1-length"><a href="#1-length" class="headerlink" title="1.length()"></a>1.length()</h4><ul>
+<li>返回长度</li>
+</ul>
+<h4 id="2-indexOf-string"><a href="#2-indexOf-string" class="headerlink" title="2.indexOf(string)"></a>2.indexOf(string)</h4><ul>
+<li>返回子串string第一次出现的位置(下标)，否则返回-1</li>
+</ul>
+<h4 id="3-lastIndexOf-string"><a href="#3-lastIndexOf-string" class="headerlink" title="3.lastIndexOf(string)"></a>3.lastIndexOf(string)</h4><ul>
+<li>返回子串string最后一次出现的位置(下标)，否则返回-1</li>
+</ul>
+<h4 id="4-charAt-int"><a href="#4-charAt-int" class="headerlink" title="4.charAt(int)"></a>4.charAt(int)</h4><ul>
+<li>返回int位置的字符</li>
+</ul>
+<h4 id="5-substring-int-start-int-end"><a href="#5-substring-int-start-int-end" class="headerlink" title="5.substring(int start,int end)"></a>5.substring(int start,int end)</h4><ul>
+<li>一个参数：返回(包含)start位置之后的子串</li>
+<li>两个参数：返回从start位置(包含)到end位置(不含)的子串</li>
+</ul>
+<h4 id="6-trim"><a href="#6-trim" class="headerlink" title="6.trim()"></a>6.trim()</h4><ul>
+<li>去掉空格</li>
+</ul>
+<h4 id="7-replace-char-old-char-new"><a href="#7-replace-char-old-char-new" class="headerlink" title="7.replace(char old,char new)"></a>7.replace(char old,char new)</h4><ul>
+<li>将字符串里所有old替换成new后返回，无替换返回原串</li>
+</ul>
+<h4 id="8-startsWith-string"><a href="#8-startsWith-string" class="headerlink" title="8.startsWith(string)"></a>8.startsWith(string)</h4><ul>
+<li>判断是否以string开头，返回Boolean</li>
+</ul>
+<h4 id="9-endsWith-string"><a href="#9-endsWith-string" class="headerlink" title="9.endsWith(string)"></a>9.endsWith(string)</h4><ul>
+<li>判断是否以string结尾，返回Boolean</li>
+</ul>
+<h4 id="10-equals-string"><a href="#10-equals-string" class="headerlink" title="10.equals(string)"></a>10.equals(string)</h4><ul>
+<li>判断字符串与string是否长度相等且字符相等，返回Boolean</li>
+</ul>
+<h4 id="11-equalsIgnoreCase-string"><a href="#11-equalsIgnoreCase-string" class="headerlink" title="11.equalsIgnoreCase(string)"></a>11.equalsIgnoreCase(string)</h4><ul>
+<li>效果同上，但忽略大小写</li>
+</ul>
+<h4 id="12-compareTo-string"><a href="#12-compareTo-string" class="headerlink" title="12.compareTo*=(string)"></a>12.compareTo*=(string)</h4><ul>
+<li>将字符串与string按Unicode字典序比较，主字符串在string前输出负数，反之正数</li>
+</ul>
+<h4 id="13-toLowerCase"><a href="#13-toLowerCase" class="headerlink" title="13.toLowerCase()"></a>13.toLowerCase()</h4><ul>
+<li>转换成小写</li>
+</ul>
+<h4 id="14-toUpperCase"><a href="#14-toUpperCase" class="headerlink" title="14.toUpperCase()"></a>14.toUpperCase()</h4><ul>
+<li>转换成大写</li>
+</ul>
+<h4 id="15-spilt-string-int"><a href="#15-spilt-string-int" class="headerlink" title="15.spilt(string,int)"></a>15.spilt(string,int)</h4><ul>
+<li>用于分割字符串，返回一个数组，string为分隔符，可以用|定义多个分隔符如”,|.”，或是使用正则表达式</li>
+<li>int为分割次数上限，可以省略</li>
+</ul>
+<h4 id="16-String-format-String-format-Object-arg"><a href="#16-String-format-String-format-Object-arg" class="headerlink" title="16.String.format(String format,Object arg)"></a>16.String.format(String format,Object arg)</h4><ul>
+<li>format是特定的格式字符串<br><img src="/images/image-20220713133027509.png" alt="image-20220713133027509"><br><img src="/images/image-20220713133102557.png" alt="image-20220713133102557"><br><img src="/images/image-20220713133143492.png" alt="image-20220713133143492"><br><img src="/images/image-20220713133237925.png" alt="image-20220713133237925"><br><img src="/images/image-20220713133254172.png" alt="image-20220713133254172"></li>
+<li>object是待处理的对象</li>
+</ul>
+<p>17.matches(string reg)</p>
+<ul>
+<li>匹配正则表达式，返回Boolean</li>
+</ul>
+<h3 id="3-正则表达式"><a href="#3-正则表达式" class="headerlink" title="3.正则表达式"></a>3.正则表达式</h3><h4 id="1-元字符"><a href="#1-元字符" class="headerlink" title="1.元字符"></a>1.元字符</h4><p><img src="/images/image-20220713133538596.png" alt="image-20220713133538596"><br><img src="/images/image-20220713133555372.png" alt="image-20220713133555372"></p>
+<h4 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h4><ul>
+<li>本质上是一个字符串</li>
+</ul>
+<p><img src="/images/image-20220713140610665.png" alt="image-20220713140610665"><br><img src="/images/image-20220713140641849.png" alt="image-20220713140641849"><br><img src="/images/image-20220713140653194.png" alt="image-20220713140653194"></p>
+<h3 id="4-StringBuilder"><a href="#4-StringBuilder" class="headerlink" title="4.StringBuilder"></a>4.StringBuilder</h3><ul>
+<li>一个对象，初始长度为16个字符，会自动扩容</li>
+<li>使用toString()转换为字符串</li>
+</ul>
+<p>1.构造</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">StringBuilder <span class="keyword">var</span>=<span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>2.常用方法</p>
+<p>1.append(arg)</p>
+<ul>
+<li>在字符串末尾追加内容，可以是任何数据类型或对象</li>
+</ul>
+<p>2.insert(int,arg)</p>
+<ul>
+<li>向字符串中间插入内容，int须小于等于length</li>
+</ul>
+<p>3.delete(int start,int end)</p>
+<ul>
+<li>删除字符串中从start(包含)到end(不含)的内容</li>
+</ul>
+<h2 id="三、数组Array"><a href="#三、数组Array" class="headerlink" title="三、数组Array"></a>三、数组Array</h2><h3 id="截止p136"><a href="#截止p136" class="headerlink" title="截止p136"></a>截止p136</h3>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>游戏开发笔记#1——Cocos相关</title>
+    <url>/2022/07/07/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-1%E2%80%94%E2%80%94Cocos%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h3 id="1-导入节点"><a href="#1-导入节点" class="headerlink" title="1.导入节点"></a>1.导入节点</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="meta">@property</span>(<span class="title class_">TypeName</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="title class_">VarName</span>:<span class="title class_">TypeName</span> = <span class="literal">null</span>!</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-切换场景"><a href="#2-切换场景" class="headerlink" title="2.切换场景"></a>2.切换场景</h3><p>​    样例是配合按钮使用的，传入形参为event和按钮控件所带的值</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">changeScene</span>(<span class="params">event:Event,CustomEventData</span>)&#123;</span><br><span class="line">        director.<span class="title function_">loadScene</span>(<span class="title class_">CustomEventData</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-实例化"><a href="#3-实例化" class="headerlink" title="3.实例化"></a>3.实例化</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> newBrick=<span class="title function_">instantiate</span>(<span class="variable language_">this</span>.<span class="property">brick</span>);</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">Node</span>.<span class="title function_">addChild</span>(newBrick);</span><br><span class="line">newBrick.<span class="title function_">setPosition</span>(pos);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-tween实例"><a href="#4-tween实例" class="headerlink" title="4.tween实例"></a>4.tween实例</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">tween</span>(<span class="title class_">Node</span>)</span><br><span class="line">        .<span class="title function_">to</span>(<span class="number">20</span>,&#123;<span class="attr">position</span>:<span class="title function_">v3</span>(x,y,z)&#125;)<span class="comment">//花多长时间，做什么</span></span><br><span class="line">        .<span class="title function_">delay</span>(<span class="number">500</span>)<span class="comment">//延迟</span></span><br><span class="line">        .<span class="title function_">start</span>();<span class="comment">//开始</span></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Cocos</tag>
+        <tag>游戏开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>离散笔记</title>
+    <url>/2022/07/13/%E7%A6%BB%E6%95%A3%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="自己做的，如有疏漏请见谅"><a href="#自己做的，如有疏漏请见谅" class="headerlink" title="自己做的，如有疏漏请见谅"></a>自己做的，如有疏漏请见谅</h2><span id="more"></span>
+
+<embed src="/pdf/离散提纲v2.2.pdf" width="100%" height="1500" type="application/pdf">]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>离散数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线代笔记</title>
+    <url>/2022/07/13/%E7%BA%BF%E4%BB%A3%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="自己做的，如有疏漏请见谅"><a href="#自己做的，如有疏漏请见谅" class="headerlink" title="自己做的，如有疏漏请见谅"></a>自己做的，如有疏漏请见谅</h2><span id="more"></span>
+
+<h3 id="Part1-提纲"><a href="#Part1-提纲" class="headerlink" title="Part1.提纲"></a>Part1.提纲</h3><embed src="/pdf/线代提纲.pdf" width="100%" height="1500" type="application/pdf">
+
+<h3 id="Part2-课本例题"><a href="#Part2-课本例题" class="headerlink" title="Part2.课本例题"></a>Part2.课本例题</h3><embed src="/pdf/线代例题.pdf" width="100%" height="1500" type="application/pdf">
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>线性代数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高数笔记</title>
+    <url>/2022/07/13/%E9%AB%98%E6%95%B0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="由OneNote导出，排版一言难尽"><a href="#由OneNote导出，排版一言难尽" class="headerlink" title="由OneNote导出，排版一言难尽"></a>由OneNote导出，排版一言难尽</h2><span id="more"></span>
+
+<h3 id="高数上"><a href="#高数上" class="headerlink" title="高数上"></a>高数上</h3><embed src="/pdf/高数上.pdf" width="100%" height="750" type="application/pdf">
+
+<h3 id="高数下"><a href="#高数下" class="headerlink" title="高数下"></a>高数下</h3><h4 id="提纲"><a href="#提纲" class="headerlink" title="提纲"></a>提纲</h4><embed src="/pdf/高数下.pdf" width="100%" height="750" type="application/pdf">
+
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><embed src="/pdf/高数下例题.pdf" width="100%" height="750" type="application/pdf">]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>高等数学</tag>
+      </tags>
+  </entry>
+</search>

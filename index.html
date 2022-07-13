@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -18,7 +19,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":3,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="FireEgg&#39;s Blog">
@@ -73,6 +74,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -81,11 +83,37 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -166,6 +194,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -212,7 +241,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-07-13 17:40:21 / 修改时间：17:59:45" itemprop="dateCreated datePublished" datetime="2022-07-13T17:40:21+08:00">2022-07-13</time>
+      <time title="创建时间：2022-07-13 17:40:21 / 修改时间：18:23:14" itemprop="dateCreated datePublished" datetime="2022-07-13T17:40:21+08:00">2022-07-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -234,11 +263,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="由OneNote导出，排版一言难尽"><a href="#由OneNote导出，排版一言难尽" class="headerlink" title="由OneNote导出，排版一言难尽"></a>由OneNote导出，排版一言难尽</h2><h3 id="高数上"><a href="#高数上" class="headerlink" title="高数上"></a>高数上</h3><embed src="/pdf/高数上.pdf" width="100%" height="750" type="application/pdf">
-
-<h3 id="高数下"><a href="#高数下" class="headerlink" title="高数下"></a>高数下</h3><h4 id="提纲"><a href="#提纲" class="headerlink" title="提纲"></a>提纲</h4><embed src="/pdf/高数下.pdf" width="100%" height="750" type="application/pdf">
-
-<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><embed src="/pdf/高数下例题.pdf" width="100%" height="750" type="application/pdf">
+          <h2 id="由OneNote导出，排版一言难尽"><a href="#由OneNote导出，排版一言难尽" class="headerlink" title="由OneNote导出，排版一言难尽"></a>由OneNote导出，排版一言难尽</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/13/%E9%AB%98%E6%95%B0%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -294,7 +327,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-07-13 16:59:31 / 修改时间：17:32:58" itemprop="dateCreated datePublished" datetime="2022-07-13T16:59:31+08:00">2022-07-13</time>
+      <time title="创建时间：2022-07-13 16:59:31 / 修改时间：18:22:54" itemprop="dateCreated datePublished" datetime="2022-07-13T16:59:31+08:00">2022-07-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -316,10 +349,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="自己做的，如有疏漏请见谅"><a href="#自己做的，如有疏漏请见谅" class="headerlink" title="自己做的，如有疏漏请见谅"></a>自己做的，如有疏漏请见谅</h2><h3 id="Part1-提纲"><a href="#Part1-提纲" class="headerlink" title="Part1.提纲"></a>Part1.提纲</h3><embed src="/pdf/线代提纲.pdf" width="100%" height="1500" type="application/pdf">
-
-<h3 id="Part2-课本例题"><a href="#Part2-课本例题" class="headerlink" title="Part2.课本例题"></a>Part2.课本例题</h3><embed src="/pdf/线代例题.pdf" width="100%" height="1500" type="application/pdf">
-
+          <h2 id="自己做的，如有疏漏请见谅"><a href="#自己做的，如有疏漏请见谅" class="headerlink" title="自己做的，如有疏漏请见谅"></a>自己做的，如有疏漏请见谅</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/13/%E7%BA%BF%E4%BB%A3%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -375,7 +413,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-07-13 16:59:22 / 修改时间：17:29:46" itemprop="dateCreated datePublished" datetime="2022-07-13T16:59:22+08:00">2022-07-13</time>
+      <time title="创建时间：2022-07-13 16:59:22 / 修改时间：18:22:48" itemprop="dateCreated datePublished" datetime="2022-07-13T16:59:22+08:00">2022-07-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -397,7 +435,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="自己做的，如有疏漏请见谅"><a href="#自己做的，如有疏漏请见谅" class="headerlink" title="自己做的，如有疏漏请见谅"></a>自己做的，如有疏漏请见谅</h2><embed src="/pdf/离散提纲v2.2.pdf" width="100%" height="1500" type="application/pdf">
+          <h2 id="自己做的，如有疏漏请见谅"><a href="#自己做的，如有疏漏请见谅" class="headerlink" title="自己做的，如有疏漏请见谅"></a>自己做的，如有疏漏请见谅</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/13/%E7%A6%BB%E6%95%A3%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -459,7 +505,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-13 17:15:55" itemprop="dateModified" datetime="2022-07-13T17:15:55+08:00">2022-07-13</time>
+      <time title="修改时间：2022-07-13 18:22:28" itemprop="dateModified" datetime="2022-07-13T18:22:28+08:00">2022-07-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -489,214 +535,14 @@
 <ul>
 <li>文件名与类名一致</li>
 </ul>
-<h3 id="2-数据类型"><a href="#2-数据类型" class="headerlink" title="2.数据类型"></a>2.数据类型</h3><table>
-<thead>
-<tr>
-<th align="center">类型</th>
-<th align="center">空间</th>
-<th align="center">范围</th>
-<th align="center">备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">byte</td>
-<td align="center">8</td>
-<td align="center">-2^7~2^7-1</td>
-<td align="center">8位=1byte</td>
-</tr>
-<tr>
-<td align="center">short</td>
-<td align="center">16</td>
-<td align="center">-2^15~2^15-1</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">int</td>
-<td align="center">32</td>
-<td align="center">-2^31~2^31-1</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">long</td>
-<td align="center">64</td>
-<td align="center">-2^63~2^63-1</td>
-<td align="center">数据末尾+L\l</td>
-</tr>
-<tr>
-<td align="center">float</td>
-<td align="center">32</td>
-<td align="center">较大</td>
-<td align="center">数据末尾+F\f</td>
-</tr>
-<tr>
-<td align="center">double</td>
-<td align="center">64</td>
-<td align="center">很大</td>
-<td align="center">数据末尾+D\d(默认)</td>
-</tr>
-<tr>
-<td align="center">char</td>
-<td align="center">16</td>
-<td align="center">0~2^16</td>
-<td align="center">用’ ‘表示，使用Unicode</td>
-</tr>
-<tr>
-<td align="center">boolean</td>
-<td align="center"></td>
-<td align="center">0,1</td>
-<td align="center">不能进行类型转换</td>
-</tr>
-</tbody></table>
-<h3 id="3-转义符号"><a href="#3-转义符号" class="headerlink" title="3.转义符号"></a>3.转义符号</h3><table>
-<thead>
-<tr>
-<th align="left">转义</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">\ddd</td>
-<td>八进制数表示的字符</td>
-</tr>
-<tr>
-<td align="left">\uxxxx</td>
-<td>十六进制数表示的字符</td>
-</tr>
-<tr>
-<td align="left">\‘</td>
-<td>‘</td>
-</tr>
-<tr>
-<td align="left">\\</td>
-<td>\</td>
-</tr>
-<tr>
-<td align="left">\t</td>
-<td>制表符</td>
-</tr>
-<tr>
-<td align="left">\r</td>
-<td>回车</td>
-</tr>
-<tr>
-<td align="left">\n</td>
-<td>换行</td>
-</tr>
-<tr>
-<td align="left">\b</td>
-<td>退格</td>
-</tr>
-<tr>
-<td align="left">\f</td>
-<td>换页</td>
-</tr>
-</tbody></table>
-<h3 id="4-标识符"><a href="#4-标识符" class="headerlink" title="4.标识符"></a>4.标识符</h3><ul>
-<li>由Unicode字母，数字，_，$构成，开头不能为数字</li>
-<li>变量声明与cpp相同<ul>
-<li>成员变量在类内</li>
-<li>局部变量在方法内</li>
-</ul>
-</li>
-<li>常量声明final</li>
-<li>静态声明static</li>
-</ul>
-<h3 id="5-位运算"><a href="#5-位运算" class="headerlink" title="5.位运算"></a>5.位运算</h3><ul>
-<li><p>可对byte,short,char,int,long运算</p>
-</li>
-<li><p>有~(取反)，&amp;(且)，|(或)</p>
-</li>
-<li><p>&lt;&lt;左移左侧舍弃，右侧补零，&gt;&gt;右移右侧舍弃，左侧按原最左位补数</p>
-</li>
-</ul>
-<h3 id="6-运算顺序"><a href="#6-运算顺序" class="headerlink" title="6.运算顺序"></a>6.运算顺序</h3><p><img src="/images/image-20220711175059568.png" alt="image-20220711175059568"></p>
-<h3 id="7-循环"><a href="#7-循环" class="headerlink" title="7.循环"></a>7.循环</h3><ul>
-<li>foreach<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> a:object)</span><br></pre></td></tr></table></figure>
-其他略</li>
-</ul>
-<h2 id="二、字符串String"><a href="#二、字符串String" class="headerlink" title="二、字符串String"></a>二、字符串String</h2><h3 id="1-声明方式"><a href="#1-声明方式" class="headerlink" title="1.声明方式"></a>1.声明方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s1=<span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">char</span> a[]=&#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>&#125;;</span><br><span class="line">String s2=<span class="keyword">new</span> <span class="title class_">String</span>(a);</span><br><span class="line">String s3=<span class="keyword">new</span> <span class="title class_">String</span>(a,<span class="number">1</span>,<span class="number">2</span>);<span class="comment">//&quot;bc&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-常用方法"><a href="#2-常用方法" class="headerlink" title="2.常用方法"></a>2.常用方法</h3><h4 id="1-length"><a href="#1-length" class="headerlink" title="1.length()"></a>1.length()</h4><ul>
-<li>返回长度</li>
-</ul>
-<h4 id="2-indexOf-string"><a href="#2-indexOf-string" class="headerlink" title="2.indexOf(string)"></a>2.indexOf(string)</h4><ul>
-<li>返回子串string第一次出现的位置(下标)，否则返回-1</li>
-</ul>
-<h4 id="3-lastIndexOf-string"><a href="#3-lastIndexOf-string" class="headerlink" title="3.lastIndexOf(string)"></a>3.lastIndexOf(string)</h4><ul>
-<li>返回子串string最后一次出现的位置(下标)，否则返回-1</li>
-</ul>
-<h4 id="4-charAt-int"><a href="#4-charAt-int" class="headerlink" title="4.charAt(int)"></a>4.charAt(int)</h4><ul>
-<li>返回int位置的字符</li>
-</ul>
-<h4 id="5-substring-int-start-int-end"><a href="#5-substring-int-start-int-end" class="headerlink" title="5.substring(int start,int end)"></a>5.substring(int start,int end)</h4><ul>
-<li>一个参数：返回(包含)start位置之后的子串</li>
-<li>两个参数：返回从start位置(包含)到end位置(不含)的子串</li>
-</ul>
-<h4 id="6-trim"><a href="#6-trim" class="headerlink" title="6.trim()"></a>6.trim()</h4><ul>
-<li>去掉空格</li>
-</ul>
-<h4 id="7-replace-char-old-char-new"><a href="#7-replace-char-old-char-new" class="headerlink" title="7.replace(char old,char new)"></a>7.replace(char old,char new)</h4><ul>
-<li>将字符串里所有old替换成new后返回，无替换返回原串</li>
-</ul>
-<h4 id="8-startsWith-string"><a href="#8-startsWith-string" class="headerlink" title="8.startsWith(string)"></a>8.startsWith(string)</h4><ul>
-<li>判断是否以string开头，返回Boolean</li>
-</ul>
-<h4 id="9-endsWith-string"><a href="#9-endsWith-string" class="headerlink" title="9.endsWith(string)"></a>9.endsWith(string)</h4><ul>
-<li>判断是否以string结尾，返回Boolean</li>
-</ul>
-<h4 id="10-equals-string"><a href="#10-equals-string" class="headerlink" title="10.equals(string)"></a>10.equals(string)</h4><ul>
-<li>判断字符串与string是否长度相等且字符相等，返回Boolean</li>
-</ul>
-<h4 id="11-equalsIgnoreCase-string"><a href="#11-equalsIgnoreCase-string" class="headerlink" title="11.equalsIgnoreCase(string)"></a>11.equalsIgnoreCase(string)</h4><ul>
-<li>效果同上，但忽略大小写</li>
-</ul>
-<h4 id="12-compareTo-string"><a href="#12-compareTo-string" class="headerlink" title="12.compareTo*=(string)"></a>12.compareTo*=(string)</h4><ul>
-<li>将字符串与string按Unicode字典序比较，主字符串在string前输出负数，反之正数</li>
-</ul>
-<h4 id="13-toLowerCase"><a href="#13-toLowerCase" class="headerlink" title="13.toLowerCase()"></a>13.toLowerCase()</h4><ul>
-<li>转换成小写</li>
-</ul>
-<h4 id="14-toUpperCase"><a href="#14-toUpperCase" class="headerlink" title="14.toUpperCase()"></a>14.toUpperCase()</h4><ul>
-<li>转换成大写</li>
-</ul>
-<h4 id="15-spilt-string-int"><a href="#15-spilt-string-int" class="headerlink" title="15.spilt(string,int)"></a>15.spilt(string,int)</h4><ul>
-<li>用于分割字符串，返回一个数组，string为分隔符，可以用|定义多个分隔符如”,|.”，或是使用正则表达式</li>
-<li>int为分割次数上限，可以省略</li>
-</ul>
-<h4 id="16-String-format-String-format-Object-arg"><a href="#16-String-format-String-format-Object-arg" class="headerlink" title="16.String.format(String format,Object arg)"></a>16.String.format(String format,Object arg)</h4><ul>
-<li>format是特定的格式字符串<br><img src="/images/image-20220713133027509.png" alt="image-20220713133027509"><br><img src="/images/image-20220713133102557.png" alt="image-20220713133102557"><br><img src="/images/image-20220713133143492.png" alt="image-20220713133143492"><br><img src="/images/image-20220713133237925.png" alt="image-20220713133237925"><br><img src="/images/image-20220713133254172.png" alt="image-20220713133254172"></li>
-<li>object是待处理的对象</li>
-</ul>
-<p>17.matches(string reg)</p>
-<ul>
-<li>匹配正则表达式，返回Boolean</li>
-</ul>
-<h3 id="3-正则表达式"><a href="#3-正则表达式" class="headerlink" title="3.正则表达式"></a>3.正则表达式</h3><h4 id="1-元字符"><a href="#1-元字符" class="headerlink" title="1.元字符"></a>1.元字符</h4><p><img src="/images/image-20220713133538596.png" alt="image-20220713133538596"><br><img src="/images/image-20220713133555372.png" alt="image-20220713133555372"></p>
-<h4 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h4><ul>
-<li>本质上是一个字符串</li>
-</ul>
-<p><img src="/images/image-20220713140610665.png" alt="image-20220713140610665"><br><img src="/images/image-20220713140641849.png" alt="image-20220713140641849"><br><img src="/images/image-20220713140653194.png" alt="image-20220713140653194"></p>
-<h3 id="4-StringBuilder"><a href="#4-StringBuilder" class="headerlink" title="4.StringBuilder"></a>4.StringBuilder</h3><ul>
-<li>一个对象，初始长度为16个字符，会自动扩容</li>
-<li>使用toString()转换为字符串</li>
-</ul>
-<p>1.构造</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder <span class="keyword">var</span>=<span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>2.常用方法</p>
-<p>1.append(arg)</p>
-<ul>
-<li>在字符串末尾追加内容，可以是任何数据类型或对象</li>
-</ul>
-<p>2.insert(int,arg)</p>
-<ul>
-<li>向字符串中间插入内容，int须小于等于length</li>
-</ul>
-<p>3.delete(int start,int end)</p>
-<ul>
-<li>删除字符串中从start(包含)到end(不含)的内容</li>
-</ul>
-<h2 id="三、数组Array"><a href="#三、数组Array" class="headerlink" title="三、数组Array"></a>三、数组Array</h2><h3 id="截止p136"><a href="#截止p136" class="headerlink" title="截止p136"></a>截止p136</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/11/Java%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -854,7 +700,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-13 17:55:06" itemprop="dateModified" datetime="2022-07-13T17:55:06+08:00">2022-07-13</time>
+      <time title="修改时间：2022-07-13 18:22:06" itemprop="dateModified" datetime="2022-07-13T18:22:06+08:00">2022-07-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -882,19 +728,14 @@
 <p><code>Ctrl+1~6</code> 1-6级标题</p>
 <p><code>Ctrl+Shift+·</code> 代码块</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```mermaid //召唤流程图</span><br></pre></td></tr></table></figure>
-
-<h2 id="next居中引用"><a href="#next居中引用" class="headerlink" title="next居中引用"></a>next居中引用</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 其中 class=&quot;blockquote-center&quot; 是必须的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">class</span>=<span class="string">&quot;blockquote-center&quot;</span>&gt;</span>blah blah blah<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 标签 方式，要求版本在0.4.5或以上 --&gt;</span></span><br><span class="line">&#123;% centerquote %&#125;blah blah blah&#123;% endcenterquote %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 标签别名 --&gt;</span></span><br><span class="line">&#123;% cq %&#125; blah blah blah &#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="hexo-pdf内嵌代码"><a href="#hexo-pdf内嵌代码" class="headerlink" title="hexo-pdf内嵌代码"></a>hexo-pdf内嵌代码</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">&quot;/pdf/name.pdf&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;1000&quot;</span> <span class="attr">type</span>=<span class="string">&quot;application/pdf&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="上传博客常用指令"><a href="#上传博客常用指令" class="headerlink" title="上传博客常用指令"></a>上传博客常用指令</h2><p><code>hexo new</code> 新建博客</p>
-<p>*删除直接在本地删除</p>
-<p><code>hexo g -d</code> 上传</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/04/First-Blog/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -928,8 +769,6 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Fire Egg</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
 
     </div>
   </footer>
@@ -939,6 +778,8 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
 
 
 
