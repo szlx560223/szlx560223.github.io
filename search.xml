@@ -450,7 +450,7 @@
   <entry>
     <title>游戏开发笔记#2——2022暑假自制Flappy Bird</title>
     <url>/2022/07/14/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2%E2%80%94%E2%80%942022%E6%9A%91%E5%81%87%E8%87%AA%E5%88%B6Flappy-Bird/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>写这篇笔记的想法源于之前参加的Cocos开发实训，舍友说老师讲的太泛了点听课门槛略高，故我打算在此以稍微平易近人一点的语言描述我这次的开发之旅。也算是希望能够帮助更多人了解游戏开发这一行吧。</p>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>写这篇笔记的想法源于之前参加的Cocos开发实训，舍友说老师讲的太泛了点听课门槛略高，故我打算在此以稍微平易近人一点的语言描述我这次的开发之旅，因此这篇教程会十分啰嗦，还请读者按需阅读。</p>
 <ul>
 <li>第一次写教程向的东西，有疏漏请见谅</li>
 </ul>
@@ -465,6 +465,9 @@
 <h4 id="Cocos-Dashboard-amp-Cocos-Creator"><a href="#Cocos-Dashboard-amp-Cocos-Creator" class="headerlink" title="Cocos Dashboard &amp; Cocos Creator"></a>Cocos Dashboard &amp; Cocos Creator</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.cocos.com/creator</span><br></pre></td></tr></table></figure>
 
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716231813177.png" alt="image-20220716231813177"></p>
+<ul>
+<li>Cocos游戏引擎的管理面板，用于管理编辑器的版本与项目存储</li>
+</ul>
 <h4 id="一个好用的浏览器"><a href="#一个好用的浏览器" class="headerlink" title="一个好用的浏览器"></a>一个好用的浏览器</h4><ul>
 <li>Edge,Chrome,Firefox,360之类的，有F12呼出控制台的都可以，这里放个Chrome的网址</li>
 </ul>
@@ -532,9 +535,8 @@
 </li>
 </ul>
 <h2 id="游戏逻辑梳理"><a href="#游戏逻辑梳理" class="headerlink" title="游戏逻辑梳理"></a>游戏逻辑梳理</h2><p>首先，在你的脑海里回忆一下，正常一个小游戏的逻辑是怎么样的</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">graph LR</span><br><span class="line">	主界面--点击开始--&gt;游戏开始--&gt;游玩--触发条件--&gt;游戏结束--&gt;主界面</span><br></pre></td></tr></table></figure>
-
-<p>这里涉及到两个场景</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717175117142.png" alt="image-20220717175117142"></p>
+<p>这里涉及到两个<strong>场景</strong></p>
 <ol>
 <li>开始的主场景</li>
 <li>游玩时的场景</li>
