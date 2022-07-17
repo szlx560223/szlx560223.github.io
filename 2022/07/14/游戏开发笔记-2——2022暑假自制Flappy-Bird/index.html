@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言写这篇笔记的想法源于之前参加的Cocos开发实训，舍友说老师讲的太泛了点听课门槛略高，故我打算在此以稍微平易近人一点的语言描述我这次的开发之旅。也算是希望能够帮助更多人了解游戏开发这一行吧。  第一次写教程向的东西，有疏漏请见谅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="游戏开发笔记#2——2022暑假自制Flappy Bird">
+<meta property="og:url" content="http://example.com/2022/07/14/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2%E2%80%94%E2%80%942022%E6%9A%91%E5%81%87%E8%87%AA%E5%88%B6Flappy-Bird/index.html">
+<meta property="og:site_name" content="FireEgg&#39;s Blog">
+<meta property="og:description" content="前言写这篇笔记的想法源于之前参加的Cocos开发实训，舍友说老师讲的太泛了点听课门槛略高，故我打算在此以稍微平易近人一点的语言描述我这次的开发之旅。也算是希望能够帮助更多人了解游戏开发这一行吧。  第一次写教程向的东西，有疏漏请见谅">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716231202427.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716231813177.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716232643396.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716232040423.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716234149823.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716234321613.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716235009285.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717141347934.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717143148200.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717143447178.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717144017558.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717144316422.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717144520411.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717144809306.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717144946605.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717145333428.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717175802120.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717181704104.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717191028023.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717192303927.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717192823440.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717193046643.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717193504004.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717194829425.png">
+<meta property="article:published_time" content="2022-07-14T15:32:39.000Z">
+<meta property="article:modified_time" content="2022-07-17T13:37:29.011Z">
+<meta property="article:author" content="Fire Egg">
+<meta property="article:tag" content="Cocos">
+<meta property="article:tag" content="游戏开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716231202427.png">
+
+
+<link rel="canonical" href="http://example.com/2022/07/14/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2%E2%80%94%E2%80%942022%E6%9A%91%E5%81%87%E8%87%AA%E5%88%B6Flappy-Bird/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/07/14/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2%E2%80%94%E2%80%942022%E6%9A%91%E5%81%87%E8%87%AA%E5%88%B6Flappy-Bird/","path":"2022/07/14/游戏开发笔记-2——2022暑假自制Flappy-Bird/","title":"游戏开发笔记#2——2022暑假自制Flappy Bird"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>游戏开发笔记#2——2022暑假自制Flappy Bird | FireEgg's Blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">FireEgg's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%BF%85%E8%A6%81%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">下载必要软件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VSCode"><span class="nav-number">2.1.1.</span> <span class="nav-text">VSCode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cocos-Dashboard-amp-Cocos-Creator"><span class="nav-number">2.1.2.</span> <span class="nav-text">Cocos Dashboard &amp; Cocos Creator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%94%A8%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="nav-number">2.1.3.</span> <span class="nav-text">一个好用的浏览器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%86%85%E8%B0%83%E6%95%B4"><span class="nav-number">2.2.</span> <span class="nav-text">软件内调整</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cocos"><span class="nav-number">2.2.1.</span> <span class="nav-text">Cocos</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VSCode-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">VSCode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8-%E4%BB%A5Edge%E4%B8%BA%E4%BE%8B"><span class="nav-number">2.2.3.</span> <span class="nav-text">浏览器(以Edge为例)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%96%99%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">资料参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TypeScript%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">TypeScript语法教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cocos-Creator%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C"><span class="nav-number">3.2.</span> <span class="nav-text">Cocos Creator用户手册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cocos-Creator-API%E6%96%87%E6%A1%A3"><span class="nav-number">3.3.</span> <span class="nav-text">Cocos Creator API文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E9%80%BB%E8%BE%91%E6%A2%B3%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">游戏逻辑梳理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B2%E4%B8%8B%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">敲下你的第一行代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E5%88%87%E6%8D%A2"><span class="nav-number">5.1.</span> <span class="nav-text">场景切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">5.2.</span> <span class="nav-text">游戏控制</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fire Egg"
+      src="/images/avatar.JPG">
+  <p class="site-author-name" itemprop="name">Fire Egg</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/szlx560223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;szlx560223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/6538879" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;6538879" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/14/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2%E2%80%94%E2%80%942022%E6%9A%91%E5%81%87%E8%87%AA%E5%88%B6Flappy-Bird/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.JPG">
+      <meta itemprop="name" content="Fire Egg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FireEgg's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="游戏开发笔记#2——2022暑假自制Flappy Bird | FireEgg's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          游戏开发笔记#2——2022暑假自制Flappy Bird
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-14 23:32:39" itemprop="dateCreated datePublished" datetime="2022-07-14T23:32:39+08:00">2022-07-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-17 21:37:29" itemprop="dateModified" datetime="2022-07-17T21:37:29+08:00">2022-07-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>写这篇笔记的想法源于之前参加的Cocos开发实训，舍友说老师讲的太泛了点听课门槛略高，故我打算在此以稍微平易近人一点的语言描述我这次的开发之旅。也算是希望能够帮助更多人了解游戏开发这一行吧。</p>
+<ul>
+<li>第一次写教程向的东西，有疏漏请见谅</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><h3 id="下载必要软件"><a href="#下载必要软件" class="headerlink" title="下载必要软件"></a>下载必要软件</h3><h4 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://code.visualstudio.com/</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716231202427.png" alt="image-20220716231202427"></p>
+<ul>
+<li>用来敲代码，界面也很不错</li>
+</ul>
+<h4 id="Cocos-Dashboard-amp-Cocos-Creator"><a href="#Cocos-Dashboard-amp-Cocos-Creator" class="headerlink" title="Cocos Dashboard &amp; Cocos Creator"></a>Cocos Dashboard &amp; Cocos Creator</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.cocos.com/creator</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716231813177.png" alt="image-20220716231813177"></p>
+<h4 id="一个好用的浏览器"><a href="#一个好用的浏览器" class="headerlink" title="一个好用的浏览器"></a>一个好用的浏览器</h4><ul>
+<li>Edge,Chrome,Firefox,360之类的，有F12呼出控制台的都可以，这里放个Chrome的网址</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.google.cn/chrome/</span><br></pre></td></tr></table></figure>
+
+<h3 id="软件内调整"><a href="#软件内调整" class="headerlink" title="软件内调整"></a>软件内调整</h3><h4 id="Cocos"><a href="#Cocos" class="headerlink" title="Cocos"></a>Cocos</h4><p>打开Cocos Dashboard，初次登录需要使用手机号注册账号。登陆完成后</p>
+<ol>
+<li>点击界面右上角的齿轮</li>
+<li>Language栏切换语言</li>
+<li>在Editor Folder(编辑器目录)选择引擎存放的位置(保持默认也行)</li>
+</ol>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716232643396.png" alt="image-20220716232643396"></p>
+<p>之后在<strong>编辑器</strong>界面选择版本号最大的下载安装就行(本教程为3.5.2)</p>
+<p>下载完成后界面与图中的一致就算成功了</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716232040423.png" alt="image-20220716232040423"></p>
+<p>之后依次点击项目，新建项目</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716234149823.png" alt="image-20220716234149823"></p>
+<ol>
+<li>选择Empty(3D) (空项目)</li>
+<li>更改项目名称</li>
+<li>选择项目储存位置</li>
+<li>点击创建<br> <img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716234321613.png" alt="image-20220716234321613"></li>
+</ol>
+<ul>
+<li>编辑器版本应该会自动选择，如果没有说明编辑器没下完\有问题，返回上一步重试</li>
+</ul>
+<p>进到这个界面就算成功</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716235009285.png" alt="image-20220716235009285"></p>
+<ul>
+<li>有部分人会在底部的控制台出现红字，原因多半是运行库缺失。出现这种情况可以直接点击红字里的网址下载运行库(如果有的话)，其他红字请善用翻译软件</li>
+</ul>
+<p>之后点击左上角的Cocos Creator，选择Preferences，在language栏选择<strong>中文</strong>就可以将编辑器汉化了</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717141347934.png" alt="image-20220717141347934"></p>
+<p>接着在<strong>外部程序</strong>栏将默认脚本编辑器那一栏填入你VSCode安装的位置就可以了(选择桌面上的快捷方式就行)</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717143148200.png" alt="image-20220717143148200"></p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717143447178.png" alt="image-20220717143447178"></p>
+<p><strong>至此你的游戏引擎就准备好啦</strong></p>
+<h4 id="VSCode-1"><a href="#VSCode-1" class="headerlink" title="VSCode"></a>VSCode</h4><p>打开VSCode</p>
+<p>点击左侧<strong>扩展</strong>按钮</p>
+<p>安装如图所示的三个插件</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717144017558.png" alt="image-20220717144017558"></p>
+<h4 id="浏览器-以Edge为例"><a href="#浏览器-以Edge为例" class="headerlink" title="浏览器(以Edge为例)"></a>浏览器(以Edge为例)</h4><p>按键盘上的F12，选择<strong>打开开发工具</strong></p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717144316422.png" alt="image-20220717144316422"></p>
+<p>能看到这个页面就算成功(其他浏览器同理)</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717144520411.png" alt="image-20220717144520411"></p>
+<h2 id="资料参考"><a href="#资料参考" class="headerlink" title="资料参考"></a>资料参考</h2><h3 id="TypeScript语法教程"><a href="#TypeScript语法教程" class="headerlink" title="TypeScript语法教程"></a>TypeScript语法教程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.runoob.com/typescript/ts-tutorial.html</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717144809306.png" alt="image-20220717144809306"></p>
+<ul>
+<li>由于篇幅限制，本教程不提供TypeScript语法基础教学，还请读者自行学习</li>
+</ul>
+<h3 id="Cocos-Creator用户手册"><a href="#Cocos-Creator用户手册" class="headerlink" title="Cocos Creator用户手册"></a>Cocos Creator用户手册</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.cocos.com/creator/manual/zh/</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717144946605.png" alt="image-20220717144946605"></p>
+<ul>
+<li>这里包含引擎组件的基本用法(内含跳一跳demo教程)，读完你就能对Cocos游戏引擎有一定的了解</li>
+</ul>
+<h3 id="Cocos-Creator-API文档"><a href="#Cocos-Creator-API文档" class="headerlink" title="Cocos Creator API文档"></a>Cocos Creator API文档</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.cocos.com/creator/api/zh/</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717145333428.png" alt="image-20220717145333428"></p>
+<ul>
+<li><p>Cocos引擎所有组件的所有用法，无微不至，阅读门槛较高，若有进一步开发需求务必阅读</p>
+</li>
+<li><p><strong>至此，所有前期准备完成，你将开始正式的游戏制作</strong></p>
+</li>
+</ul>
+<h2 id="游戏逻辑梳理"><a href="#游戏逻辑梳理" class="headerlink" title="游戏逻辑梳理"></a>游戏逻辑梳理</h2><p>首先，在你的脑海里回忆一下，正常一个小游戏的逻辑是怎么样的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">	主界面--点击开始--&gt;游戏开始--&gt;游玩--触发条件--&gt;游戏结束--&gt;主界面</span><br></pre></td></tr></table></figure>
+
+<p>这里涉及到两个场景</p>
+<ol>
+<li>开始的主场景</li>
+<li>游玩时的场景</li>
+</ol>
+<p>因此，我们需要两个场景来支撑这个游戏。右键左边资源管理器中的asset，新建一个文件夹，然后再在文件夹里新建两个个场景，分别命名为main和game(名称和文件夹名字自己可以随便取，不过资源管理也是游戏开发的重要一环，所以尽量整得通俗易懂一些)</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717175802120.png" alt="image-20220717175802120"></p>
+<p>接着，我们把流程图里的<strong>游玩</strong>部分细化一下</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717181704104.png" alt="image-20220717181704104"></p>
+<p>驱动这样一个流程需要<strong>脚本</strong>的支持，所以我们需要新建一个脚本文件。同上，我们最好新建一个script文件夹，再在里面新建一个脚本文件，选择NewComponent，并命名为GameManager。同理，为了实现两个场景的切换，我们新建需要另外一个脚本，命名为GameSceneChange</p>
+<h2 id="敲下你的第一行代码"><a href="#敲下你的第一行代码" class="headerlink" title="敲下你的第一行代码"></a>敲下你的第一行代码</h2><h3 id="场景切换"><a href="#场景切换" class="headerlink" title="场景切换"></a>场景切换</h3><p>双击刚才新建的GameSceneChange脚本文件，如果你之前按步骤绑定了VSCode的话，应该会直接用VSCode打开</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717191028023.png" alt="image-20220717191028023"></p>
+<p>新建的脚本有一些初始内容，具体作用如图所示，update和start函数这里用不上，这里可以注释掉或者删掉</p>
+<p>然后我们可以在export里写下第一个函数(函数名随意，形参部分保持不动，原因后述)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">changeScene</span>(<span class="params">CustomEventData</span>)&#123;</span><br><span class="line">        director.<span class="title function_">loadScene</span>(<span class="title class_">CustomEventData</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>director.loadScene函数调用了加载场景的api，参数内容是场景的名字，他可以用来帮助我们加载另一个场景以实现场景切换</li>
+</ul>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717192303927.png" alt="image-20220717192303927"></p>
+<p>如果你是直接复制这段函数的话，大概率会爆红，解决方法是在import里加入<strong>director</strong>组件(或者鼠标移到爆红的地方之后选择快速修复)</p>
+<p>然后<strong>保存文件</strong>。</p>
+<p>既然我们写好了一段函数，那我们要怎么触发呢？按常理来讲，切换场景意味着游戏开始，所以这个函数应该在玩家点击<strong>开始游戏</strong>后触发，所以一个<strong>按钮</strong>是最好的选择。</p>
+<p>回到编辑器内。在左上角的层级管理器里新建一个按钮，名称随意。之后会出来一大堆东西，这个后面再讲。</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717192823440.png" alt="image-20220717192823440"></p>
+<p>点击层级管理器里的按钮，右边有一大堆东西，最下面有个Click Events，把数值改为1</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717193046643.png" alt="image-20220717193046643"></p>
+<p>之后将<strong>资源管理器</strong>里的GameSceneChange脚本文件拖到<strong>层级管理器</strong>里，再把<strong>层级管理器</strong>里的GameSceneChange<strong>节点</strong>拖到按钮里Click Events的节点里。之后在附属选项里选择子类名字(只有一个)，和函数名(changeScene)，参数填游戏场景的名字，这里是game。<strong>这个参数将作为名叫CustomEventData的形参传入你的函数</strong>。</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717193504004.png" alt="image-20220717193504004"></p>
+<p>除此之外，因为是按钮触发，所以还需要一个Event事件作为函数的形参。因此，你需要稍微修改你的函数，比如这样</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">changeScene</span>(<span class="params">event:Event,CustomEventData</span>)&#123;</span><br><span class="line">        director.<span class="title function_">loadScene</span>(<span class="title class_">CustomEventData</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后保存脚本文件与场景文件，点击编辑器上方的开始按钮(地球右边那个)，不出意外以浏览器的方式打开你的游戏。这里最好打开F12调试界面。</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717194829425.png" alt="image-20220717194829425"></p>
+<p>如果你的界面里有一个按钮，点击它以后控制台提示<strong>LoadScene game: xxx ms</strong>，说明你就成功了！</p>
+<h3 id="游戏控制"><a href="#游戏控制" class="headerlink" title="游戏控制"></a>游戏控制</h3><p>To be continued</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Cocos/" rel="tag"># Cocos</a>
+              <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag"># 游戏开发</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/13/%E9%AB%98%E6%95%B0%E7%AC%94%E8%AE%B0/" rel="prev" title="高数笔记">
+                  <i class="fa fa-chevron-left"></i> 高数笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fire Egg</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
