@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言写这篇笔记的想法源于之前参加的Cocos开发实训，舍友说老师讲的太泛了点听课门槛略高，故我打算在此以稍微平易近人一点的语言描述我这次的开发之旅，因此这篇教程会十分啰嗦，还请读者按需阅读。  第一次写教程向的东西，有疏漏请见谅">
+    <meta name="description" content="前言写这篇笔记的想法源于之前参加的Cocos开发实训，舍友说老师讲的太泛了点听课门槛略高，故我打算在此以稍微平易近人一点的语言描述我这次的开发之旅，因此这篇教程会十分啰嗦，还请读者按需阅读。  第一次写教程向的东西，有疏漏请见谅 部分图片泛灰是我开了夜览模式截图，对可能造成的阅读不便我表示非常抱歉">
 <meta property="og:type" content="article">
 <meta property="og:title" content="游戏开发笔记#2——2022暑假自制Flappy Bird">
 <meta property="og:url" content="http://example.com/2022/07/14/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2%E2%80%94%E2%80%942022%E6%9A%91%E5%81%87%E8%87%AA%E5%88%B6Flappy-Bird/index.html">
 <meta property="og:site_name" content="FireEgg&#39;s Blog">
-<meta property="og:description" content="前言写这篇笔记的想法源于之前参加的Cocos开发实训，舍友说老师讲的太泛了点听课门槛略高，故我打算在此以稍微平易近人一点的语言描述我这次的开发之旅，因此这篇教程会十分啰嗦，还请读者按需阅读。  第一次写教程向的东西，有疏漏请见谅">
+<meta property="og:description" content="前言写这篇笔记的想法源于之前参加的Cocos开发实训，舍友说老师讲的太泛了点听课门槛略高，故我打算在此以稍微平易近人一点的语言描述我这次的开发之旅，因此这篇教程会十分啰嗦，还请读者按需阅读。  第一次写教程向的东西，有疏漏请见谅 部分图片泛灰是我开了夜览模式截图，对可能造成的阅读不便我表示非常抱歉">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716231202427.png">
 <meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716231813177.png">
@@ -53,8 +53,17 @@
 <meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717193046643.png">
 <meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717193504004.png">
 <meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717194829425.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-1.gif">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220722221006045.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220722235134220.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220723171309655.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220723172359859.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220723174317723.png">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-2.gif">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-3.gif">
+<meta property="og:image" content="http://example.com/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-4.gif">
 <meta property="article:published_time" content="2022-07-14T15:32:39.000Z">
-<meta property="article:modified_time" content="2022-07-17T13:58:16.492Z">
+<meta property="article:modified_time" content="2022-07-23T13:29:49.773Z">
 <meta property="article:author" content="Fire Egg">
 <meta property="article:tag" content="Cocos">
 <meta property="article:tag" content="游戏开发">
@@ -171,7 +180,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%BF%85%E8%A6%81%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">下载必要软件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VSCode"><span class="nav-number">2.1.1.</span> <span class="nav-text">VSCode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cocos-Dashboard-amp-Cocos-Creator"><span class="nav-number">2.1.2.</span> <span class="nav-text">Cocos Dashboard &amp; Cocos Creator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%94%A8%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="nav-number">2.1.3.</span> <span class="nav-text">一个好用的浏览器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%86%85%E8%B0%83%E6%95%B4"><span class="nav-number">2.2.</span> <span class="nav-text">软件内调整</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cocos"><span class="nav-number">2.2.1.</span> <span class="nav-text">Cocos</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VSCode-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">VSCode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8-%E4%BB%A5Edge%E4%B8%BA%E4%BE%8B"><span class="nav-number">2.2.3.</span> <span class="nav-text">浏览器(以Edge为例)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%96%99%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">资料参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TypeScript%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">TypeScript语法教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cocos-Creator%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C"><span class="nav-number">3.2.</span> <span class="nav-text">Cocos Creator用户手册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cocos-Creator-API%E6%96%87%E6%A1%A3"><span class="nav-number">3.3.</span> <span class="nav-text">Cocos Creator API文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E9%80%BB%E8%BE%91%E6%A2%B3%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">游戏逻辑梳理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B2%E4%B8%8B%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">敲下你的第一行代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E5%88%87%E6%8D%A2"><span class="nav-number">5.1.</span> <span class="nav-text">场景切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">5.2.</span> <span class="nav-text">游戏控制</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%BF%85%E8%A6%81%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">下载必要软件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VSCode"><span class="nav-number">2.1.1.</span> <span class="nav-text">VSCode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cocos-Dashboard-amp-Cocos-Creator"><span class="nav-number">2.1.2.</span> <span class="nav-text">Cocos Dashboard &amp; Cocos Creator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%94%A8%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="nav-number">2.1.3.</span> <span class="nav-text">一个好用的浏览器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%86%85%E8%B0%83%E6%95%B4"><span class="nav-number">2.2.</span> <span class="nav-text">软件内调整</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cocos"><span class="nav-number">2.2.1.</span> <span class="nav-text">Cocos</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VSCode-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">VSCode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8-%E4%BB%A5Edge%E4%B8%BA%E4%BE%8B"><span class="nav-number">2.2.3.</span> <span class="nav-text">浏览器(以Edge为例)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%96%99%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">资料参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TypeScript%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">TypeScript语法教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cocos-Creator%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C"><span class="nav-number">3.2.</span> <span class="nav-text">Cocos Creator用户手册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cocos-Creator-API%E6%96%87%E6%A1%A3"><span class="nav-number">3.3.</span> <span class="nav-text">Cocos Creator API文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E9%80%BB%E8%BE%91%E6%A2%B3%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">游戏逻辑梳理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B2%E4%B8%8B%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">敲下你的第一行代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E5%88%87%E6%8D%A2"><span class="nav-number">5.1.</span> <span class="nav-text">场景切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E5%85%83%E7%B4%A0%E7%AE%A1%E7%90%86"><span class="nav-number">5.2.</span> <span class="nav-text">游戏元素管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E5%88%86%E6%9D%BF"><span class="nav-number">5.2.1.</span> <span class="nav-text">计分板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%92%E8%89%B2"><span class="nav-number">5.2.2.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%9C%E7%A2%8D%E7%89%A9"><span class="nav-number">5.2.3.</span> <span class="nav-text">障碍物</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -281,7 +290,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-17 21:58:16" itemprop="dateModified" datetime="2022-07-17T21:58:16+08:00">2022-07-17</time>
+      <time title="修改时间：2022-07-23 21:29:49" itemprop="dateModified" datetime="2022-07-23T21:29:49+08:00">2022-07-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -306,16 +315,19 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>写这篇笔记的想法源于之前参加的Cocos开发实训，舍友说老师讲的太泛了点听课门槛略高，故我打算在此以稍微平易近人一点的语言描述我这次的开发之旅，因此这篇教程会十分啰嗦，还请读者按需阅读。</p>
 <ul>
 <li>第一次写教程向的东西，有疏漏请见谅</li>
+<li>部分图片泛灰是我开了夜览模式截图，对可能造成的阅读不便我表示非常抱歉</li>
 </ul>
 <span id="more"></span>
 
-<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><h3 id="下载必要软件"><a href="#下载必要软件" class="headerlink" title="下载必要软件"></a>下载必要软件</h3><h4 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://code.visualstudio.com/</span><br></pre></td></tr></table></figure>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><h3 id="下载必要软件"><a href="#下载必要软件" class="headerlink" title="下载必要软件"></a>下载必要软件</h3><h4 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h4><p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">点此直达</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://code.visualstudio.com/</span><br></pre></td></tr></table></figure>
 
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716231202427.png" alt="image-20220716231202427"></p>
 <ul>
 <li>用来敲代码，界面也很不错</li>
 </ul>
-<h4 id="Cocos-Dashboard-amp-Cocos-Creator"><a href="#Cocos-Dashboard-amp-Cocos-Creator" class="headerlink" title="Cocos Dashboard &amp; Cocos Creator"></a>Cocos Dashboard &amp; Cocos Creator</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.cocos.com/creator</span><br></pre></td></tr></table></figure>
+<h4 id="Cocos-Dashboard-amp-Cocos-Creator"><a href="#Cocos-Dashboard-amp-Cocos-Creator" class="headerlink" title="Cocos Dashboard &amp; Cocos Creator"></a>Cocos Dashboard &amp; Cocos Creator</h4><p><a target="_blank" rel="noopener" href="https://www.cocos.com/creator">点此直达</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.cocos.com/creator</span><br></pre></td></tr></table></figure>
 
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220716231813177.png" alt="image-20220716231813177"></p>
 <ul>
@@ -324,6 +336,7 @@
 <h4 id="一个好用的浏览器"><a href="#一个好用的浏览器" class="headerlink" title="一个好用的浏览器"></a>一个好用的浏览器</h4><ul>
 <li>Edge,Chrome,Firefox,360之类的，有F12呼出控制台的都可以，这里放个Chrome的网址</li>
 </ul>
+<p><a target="_blank" rel="noopener" href="https://www.google.cn/chrome/">点此直达</a></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.google.cn/chrome/</span><br></pre></td></tr></table></figure>
 
 <h3 id="软件内调整"><a href="#软件内调整" class="headerlink" title="软件内调整"></a>软件内调整</h3><h4 id="Cocos"><a href="#Cocos" class="headerlink" title="Cocos"></a>Cocos</h4><p>打开Cocos Dashboard，初次登录需要使用手机号注册账号。登陆完成后</p>
@@ -388,10 +401,11 @@
 </li>
 </ul>
 <h2 id="游戏逻辑梳理"><a href="#游戏逻辑梳理" class="headerlink" title="游戏逻辑梳理"></a>游戏逻辑梳理</h2><p>首先，在你的脑海里回忆一下，正常一个小游戏的逻辑是怎么样的</p>
+<p>一般来说，应该是这样的：</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717175117142.png" alt="image-20220717175117142"></p>
 <p>这里涉及到两个<strong>场景</strong></p>
 <ol>
-<li>开始的主场景</li>
+<li>主界面的场景</li>
 <li>游玩时的场景</li>
 </ol>
 <p>因此，我们需要两个场景来支撑这个游戏。右键左边资源管理器中的asset，新建一个文件夹，然后再在文件夹里新建两个个场景，分别命名为main和game(名称和文件夹名字自己可以随便取，不过资源管理也是游戏开发的重要一环，所以尽量整得通俗易懂一些)</p>
@@ -402,19 +416,19 @@
 <h2 id="敲下你的第一行代码"><a href="#敲下你的第一行代码" class="headerlink" title="敲下你的第一行代码"></a>敲下你的第一行代码</h2><h3 id="场景切换"><a href="#场景切换" class="headerlink" title="场景切换"></a>场景切换</h3><p>双击刚才新建的GameSceneChange脚本文件，如果你之前按步骤绑定了VSCode的话，应该会直接用VSCode打开</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717191028023.png" alt="image-20220717191028023"></p>
 <p>新建的脚本有一些初始内容，具体作用如图所示，update和start函数这里用不上，这里可以注释掉或者删掉</p>
-<p>然后我们可以在export里写下第一个函数(函数名随意，形参部分保持不动，原因后述)</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">changeScene</span>(<span class="params">CustomEventData</span>)&#123;</span><br><span class="line">        director.<span class="title function_">loadScene</span>(<span class="title class_">CustomEventData</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们可以在export里写下第一个函数(函数名随意)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">changeScene</span>(<span class="params">SceneName</span>)&#123;</span><br><span class="line">        director.<span class="title function_">loadScene</span>(<span class="title class_">SceneName</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>director.loadScene函数调用了加载场景的api，参数内容是场景的名字，他可以用来帮助我们加载另一个场景以实现场景切换</li>
-</ul>
+<blockquote>
+<p>director.loadScene(SceneName)调用了加载场景的api，参数内容是场景的名字，他可以用来帮助我们加载另一个场景以实现场景切换</p>
+</blockquote>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717192303927.png" alt="image-20220717192303927"></p>
 <p>如果你是直接复制这段函数的话，大概率会爆红，解决方法是在import里加入<strong>director</strong>组件(或者鼠标移到爆红的地方之后选择快速修复)</p>
 <p>然后<strong>保存文件</strong>。</p>
 <p>既然我们写好了一段函数，那我们要怎么触发呢？按常理来讲，切换场景意味着游戏开始，所以这个函数应该在玩家点击<strong>开始游戏</strong>后触发，所以一个<strong>按钮</strong>是最好的选择。</p>
-<p>回到编辑器内。在左上角的层级管理器里新建一个按钮，名称随意。之后会出来一大堆东西，这个后面再讲。</p>
+<p>回到编辑器内。在左上角的层级管理器里新建一个按钮，名称随意。之后会出来一大堆东西，这个后面再讲。<div id="1"></div></p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717192823440.png" alt="image-20220717192823440"></p>
-<p>点击层级管理器里的按钮，右边有一大堆东西，最下面有个Click Events，把数值改为1</p>
+<p>点击层级管理器里的按钮，右边有一大堆东西，最下面有个Click Events，代表按钮点击后执行的操作数，把数值改为1</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717193046643.png" alt="image-20220717193046643"></p>
 <p>之后将<strong>资源管理器</strong>里的GameSceneChange脚本文件拖到<strong>层级管理器</strong>里，再把<strong>层级管理器</strong>里的GameSceneChange<strong>节点</strong>拖到按钮里Click Events的节点里。之后在附属选项里选择子类名字(只有一个)，和函数名(changeScene)，参数填游戏场景的名字，这里是game。<strong>这个参数将作为名叫CustomEventData的形参传入你的函数</strong>。</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717193504004.png" alt="image-20220717193504004"></p>
@@ -424,7 +438,82 @@
 <p>然后保存脚本文件与场景文件，点击编辑器上方的开始按钮(地球右边那个)，不出意外以浏览器的方式打开你的游戏。这里最好打开F12调试界面。</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717194829425.png" alt="image-20220717194829425"></p>
 <p>如果你的界面里有一个按钮，点击它以后控制台提示<strong>LoadScene game: xxx ms</strong>，说明你就成功了！</p>
-<h3 id="游戏控制"><a href="#游戏控制" class="headerlink" title="游戏控制"></a>游戏控制</h3><p>To be continued</p>
+<h3 id="游戏元素管理"><a href="#游戏元素管理" class="headerlink" title="游戏元素管理"></a>游戏元素管理</h3><p>好！你进入了游戏场景，可以开始准备制作这个场景里的每个元素了。</p>
+<p>以下面这个<a target="_blank" rel="noopener" href="http://flappybird.io/">FlappyBird</a>为例</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-1.gif" alt="gif-1"></p>
+<p>这个游戏场景包含下面几个元素</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220722221006045.png" alt="image-20220722221006045"></p>
+<p>为了让这些元素组合在一起动起来，这里就需要一个脚本来驱动它们了。打开之前新建的GameManager脚本，让我们来一个个制作并应用这些元素。</p>
+<h4 id="计分板"><a href="#计分板" class="headerlink" title="计分板"></a>计分板</h4><p>还记得<a href="#1">之前</a>讲过的按钮吗？之所以选择先做计分板是因为创建计分板所在的标签(Label)会附带一个画布(Canvas),这个画布又包含了一个摄像机(Camera)，这正好能拿来当游戏的视角</p>
+<p>在游戏场景的根节点新建一个Label，命名为lb_score,再把它的位置往上移，比如到y轴250的位置，再调整一下文本的字号，Label的大小会随文本大小而变化</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220722235134220.png" alt="image-20220722235134220"></p>
+<ul>
+<li>这个Label的坐标是<strong>相对于他的父节点的</strong>，对于以后所有部件都是如此</li>
+</ul>
+<h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><p>这里的角色——也就是你交互一下就会跳一下的鸟。虽然看起来很朴素，但是包含很多细节</p>
+<ol>
+<li>他在移动</li>
+<li>他知道你和他交互(这里以按下鼠标左键为例)</li>
+<li>他在你交互过后有反应(跳了一下)</li>
+<li>他会知道自己有没有撞上柱子</li>
+<li>他知道自己钻过柱子后会得一分</li>
+<li>他能根据速度角变换朝向</li>
+<li>…</li>
+</ol>
+<p>这里咱一个个来讲</p>
+<p>虽然看起来鸟是在向右移动，然后经过一个又一个静止不动的柱子，比如下图</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220723171309655.png" alt="image-20220723171309655"></p>
+<p>但实际上，在游戏的实际制作中，通常会让角色保持<strong>与镜头的相对静止</strong>，让场景相对角色方向运动。比较典型的例子有<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14W411w7jK">Muse Dash</a>。这样的做法不用移动摄像机，看起来就像坐在剧院台下看着上面的演员和背景演了一出戏。所以只用实现角色的上下移动就行了</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220723172359859.png" alt="image-20220723172359859"></p>
+<p>这里我们在根节点下新建一个3D对象-球体，命名为Bird，将他的位置(Position)设定在(160,320,0)，大小(Scale)设置为(20,20,20)，再把渲染层级(Layer)改为None，让他能不受限制地被摄像机渲染出来</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220723174317723.png" alt="image-20220723174317723"></p>
+<p>我们再为他新建一个脚本，命名为BirdCtrl，在这里面，我们要让它动起来。</p>
+<p>首先，我们先来实现起跳。其实跳跃无非就是让他当前的垂直速度变为向上，为了操作物体的速度，引擎里需要我们把这个物体变为<strong>刚体</strong>(RigidBody)，通俗来讲就是把他变成实心的，能够感知这个物理世界。为此，我们需要为Bird添加刚体组件</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-2.gif" alt="gif-2"></p>
+<p>打开BirdCtrl，在类内声明一个<strong>资产变量</strong>Bird，类型为Node</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@property</span>(<span class="title class_">Node</span>)</span><br><span class="line"><span class="title class_">Bird</span>:<span class="title class_">Node</span> = <span class="literal">null</span>!</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>带有@property的资产变量与普通变量最大的区别是<strong>能在编辑器内拖拽并应用内容</strong></p>
+</blockquote>
+<p>再在start函数里补充这一句</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">Bird</span>.<span class="title function_">getComponent</span>(<span class="title class_">RigidBody</span>).<span class="title function_">setLinearVelocity</span>(<span class="title function_">v3</span>(<span class="number">0</span>,<span class="number">300</span>,<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个语句作用是在Bird节点里<strong>按名字寻找</strong>刚体组件，再调用组件里<strong>设定线性速度</strong>的方法，参数是<strong>三维坐标对象v3</strong></p>
+</blockquote>
+<p>保存代码，将BirdCtrl拖入节点树中，将Bird拖入右侧的栏位中，保存场景。这时候运行游戏你就能发现一个向上飞的小球(你的鸟)了</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-3.gif" alt="gif-3"></p>
+<p>但光让他自己不受限制地移动显然不够，他还需要听我们的话，我们点一下鼠标他就跳一下。为了让游戏引擎知道我们在点击鼠标，这里我们需要<strong>开启鼠标监听</strong></p>
+<p>将刚才复制进start函数里的内容写进新的函数里，比如onMouseClick。在start函数里写入如下语句</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">input.<span class="title function_">on</span>(<span class="title class_">Input</span>.<span class="property">EventType</span>.<span class="property">MOUSE_DOWN</span>,<span class="variable language_">this</span>.<span class="property">onMouseClick</span>,<span class="variable language_">this</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个语句用于开启输入监听，第一个参数指定监听类型，第二个参数指定触发的函数回调，第三个参数指定触发的目标，一般都是this</p>
+</blockquote>
+<p>而函数为了接受来自输入监听的触发，需要添加EventMouse类型的形参作为输入，就像这样</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onMouseClick</span>(<span class="params">event: EventMouse</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">Bird</span>.<span class="title function_">getComponent</span>(<span class="title class_">RigidBody</span>).<span class="title function_">setLinearVelocity</span>(<span class="title function_">v3</span>(<span class="number">0</span>,<span class="number">300</span>,<span class="number">0</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>之后你的鸟就会在你点击鼠标之后跳起来了。</p>
+<p>接着，我们再来实现下落，这里依靠游戏内物理引擎的<strong>重力</strong>来实现。你可能已经注意到了，在之前开启刚体组件的时候就已经有重力下落了。但很显然，这点蚊子腿的下落速度肯定不够看。为此，我们需要调整<strong>世界重力</strong>和物体的<strong>速度阻尼</strong></p>
+<p>在start函数里写入</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">PhysicsSystem</span>.<span class="property">instance</span>.<span class="property">gravity</span>=<span class="title function_">v3</span>(<span class="number">0</span>,-<span class="number">500</span>,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个语句调整了<strong>物理系统</strong>实例的重力参数，其值是一个三维坐标</p>
+</blockquote>
+<p>和</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">Bird</span>.<span class="title function_">getComponent</span>(<span class="title class_">RigidBody</span>).<span class="property">linearDamping</span>=<span class="number">0.1</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个语句了刚体里线性阻尼的值，其值是一个数</p>
+</blockquote>
+<p>最终代码如下</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; _decorator, <span class="title class_">Component</span>, <span class="title class_">Node</span>, <span class="title class_">RigidBody</span>, v3, input, <span class="title class_">Input</span>, <span class="title class_">EventMouse</span>, <span class="title class_">PhysicsSystem</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&#x27;BirdCtrl&#x27;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">BirdCtrl</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@property</span>(<span class="title class_">Node</span>)</span><br><span class="line">    <span class="title class_">Bird</span>:<span class="title class_">Node</span> = <span class="literal">null</span>!</span><br><span class="line"></span><br><span class="line">    <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">        input.<span class="title function_">on</span>(<span class="title class_">Input</span>.<span class="property">EventType</span>.<span class="property">MOUSE_DOWN</span>,<span class="variable language_">this</span>.<span class="property">onMouseClick</span>,<span class="variable language_">this</span>);</span><br><span class="line">        <span class="title class_">PhysicsSystem</span>.<span class="property">instance</span>.<span class="property">gravity</span>=<span class="title function_">v3</span>(<span class="number">0</span>,-<span class="number">500</span>,<span class="number">0</span>);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">Bird</span>.<span class="title function_">getComponent</span>(<span class="title class_">RigidBody</span>).<span class="property">linearDamping</span>=<span class="number">0.1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">onMouseClick</span>(<span class="params">event: EventMouse</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">Bird</span>.<span class="title function_">getComponent</span>(<span class="title class_">RigidBody</span>).<span class="title function_">setLinearVelocity</span>(<span class="title function_">v3</span>(<span class="number">0</span>,<span class="number">300</span>,<span class="number">0</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    update(deltaTime: number) &#123;</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">    &#125;//还用不上</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候保存代码和场景并运行，你就能看到一只听你指挥的鸟了</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-4.gif" alt="gif-4"></p>
+<h4 id="障碍物"><a href="#障碍物" class="headerlink" title="障碍物"></a>障碍物</h4><p>WIP</p>
 
     </div>
 
