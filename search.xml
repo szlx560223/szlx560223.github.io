@@ -697,8 +697,7 @@
 <p>update函数会在游戏的每一帧调用一次，所以相当于每 300帧生成一个砖块</p>
 </blockquote>
 <p>WIP</p>
-<h1 id="Todo-List"><a href="#Todo-List" class="headerlink" title="Todo List"></a>Todo List</h1><hr>
-<h5 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h5><h5 id="碰撞检测"><a href="#碰撞检测" class="headerlink" title="碰撞检测"></a>碰撞检测</h5><h3 id="游戏机制"><a href="#游戏机制" class="headerlink" title="游戏机制"></a>游戏机制</h3><h4 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h4><h4 id="得分判定"><a href="#得分判定" class="headerlink" title="得分判定"></a>得分判定</h4><h4 id="死亡判定"><a href="#死亡判定" class="headerlink" title="死亡判定"></a>死亡判定</h4><h4 id="暂停界面"><a href="#暂停界面" class="headerlink" title="暂停界面"></a>暂停界面</h4><h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="游戏变量分离"><a href="#游戏变量分离" class="headerlink" title="游戏变量分离"></a>游戏变量分离</h3><h3 id="游戏场景美化"><a href="#游戏场景美化" class="headerlink" title="游戏场景美化"></a>游戏场景美化</h3><h3 id="随机事件奖励"><a href="#随机事件奖励" class="headerlink" title="随机事件奖励"></a>随机事件奖励</h3><h3 id="用户内容自定义"><a href="#用户内容自定义" class="headerlink" title="用户内容自定义"></a>用户内容自定义</h3>]]></content>
+]]></content>
       <categories>
         <category>笔记</category>
       </categories>
