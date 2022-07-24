@@ -8,9 +8,9 @@
 <p><code>Ctrl+U</code>下划线</p>
 <p><code>Ctrl+1~6</code> 1-6级标题</p>
 <p><code>Ctrl+Shift+·</code> 代码块</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">```mermaid //召唤流程图</span><br></pre></td></tr></table></figure>
-
 <span id="more"></span>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">```mermaid //召唤流程图</span><br></pre></td></tr></table></figure>
 
 <h2 id="next居中引用"><a href="#next居中引用" class="headerlink" title="next居中引用"></a>next居中引用</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 其中 class=&quot;blockquote-center&quot; 是必须的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">class</span>=<span class="string">&quot;blockquote-center&quot;</span>&gt;</span>blah blah blah<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 标签 方式，要求版本在0.4.5或以上 --&gt;</span></span><br><span class="line">&#123;% centerquote %&#125;blah blah blah&#123;% endcenterquote %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 标签别名 --&gt;</span></span><br><span class="line">&#123;% cq %&#125; blah blah blah &#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
 
@@ -534,7 +534,7 @@
 <li><p><strong>至此，所有前期准备完成，你将开始正式的游戏制作</strong></p>
 </li>
 </ul>
-<h2 id="游戏逻辑梳理"><a href="#游戏逻辑梳理" class="headerlink" title="游戏逻辑梳理"></a>游戏逻辑梳理</h2><p>首先，在你的脑海里回忆一下，正常一个小游戏的逻辑是怎么样的</p>
+<h2 id="游戏逻辑梳理"><a href="#游戏逻辑梳理" class="headerlink" title="游戏逻辑梳理"></a>游戏逻辑梳理</h2><p>首先，在你的脑海里回忆一下，你玩过的小游戏的逻辑是怎么样的</p>
 <p>一般来说，应该是这样的：</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717175117142.png" alt="image-20220717175117142"></p>
 <p>这里涉及到两个<strong>场景</strong></p>
@@ -554,32 +554,34 @@
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">changeScene</span>(<span class="params">SceneName</span>)&#123;</span><br><span class="line">        director.<span class="title function_">loadScene</span>(<span class="title class_">SceneName</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>director.loadScene(SceneName)调用了加载场景的api，参数内容是场景的名字，他可以用来帮助我们加载另一个场景以实现场景切换</p>
+<p>director.loadScene(SceneName)方法调用了加载场景的api，参数内容是场景的名字，他可以用来帮助我们加载另一个场景以实现场景切换</p>
 </blockquote>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717192303927.png" alt="image-20220717192303927"></p>
 <p>如果你是直接复制这段函数的话，大概率会爆红，解决方法是在import里加入<strong>director</strong>组件(或者鼠标移到爆红的地方之后选择快速修复)</p>
 <p>然后<strong>保存文件</strong>。</p>
 <p>既然我们写好了一段函数，那我们要怎么触发呢？按常理来讲，切换场景意味着游戏开始，所以这个函数应该在玩家点击<strong>开始游戏</strong>后触发，所以一个<strong>按钮</strong>是最好的选择。</p>
-<p>回到编辑器内。在左上角的层级管理器里新建一个按钮，名称随意。之后会出来一大堆东西，这个后面再讲。<div id="1"></div></p>
+<p>回到编辑器内。在左上角的层级管理器里新建一个按钮，名称随意。之后会出来一大堆东西，这个后面再讲。</p>
+<div id="1"></div>
+
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717192823440.png" alt="image-20220717192823440"></p>
 <p>点击层级管理器里的按钮，右边有一大堆东西，最下面有个Click Events，代表按钮点击后执行的操作数，把数值改为1</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717193046643.png" alt="image-20220717193046643"></p>
 <p>之后将<strong>资源管理器</strong>里的GameSceneChange脚本文件拖到<strong>层级管理器</strong>里，再把<strong>层级管理器</strong>里的GameSceneChange<strong>节点</strong>拖到按钮里Click Events的节点里。之后在附属选项里选择子类名字(只有一个)，和函数名(changeScene)，参数填游戏场景的名字，这里是game。<strong>这个参数将作为名叫CustomEventData的形参传入你的函数</strong>。</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717193504004.png" alt="image-20220717193504004"></p>
-<p>除此之外，因为是按钮触发，所以还需要一个Event事件作为函数的形参。因此，你需要稍微修改你的函数，比如这样</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">changeScene</span>(<span class="params">event:Event,CustomEventData</span>)&#123;</span><br><span class="line">        director.<span class="title function_">loadScene</span>(<span class="title class_">CustomEventData</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>除此之外，因为是按钮触发，所以还需要一个Event事件作为函数的形参。因此，你需要稍微修改你的函数，最终代码如下</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//GameSceneChange.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; _decorator, <span class="title class_">Component</span>, <span class="title class_">Node</span>, director &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&#x27;GameSceneChange&#x27;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">GameSceneChange</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">changeScene</span>(<span class="params">event:Event,CustomEventData</span>)&#123;</span><br><span class="line">        director.<span class="title function_">loadScene</span>(<span class="title class_">CustomEventData</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>然后保存脚本文件与场景文件，点击编辑器上方的开始按钮(地球右边那个)，不出意外以浏览器的方式打开你的游戏。这里最好打开F12调试界面。</p>
+<p>然后保存脚本文件与场景文件，点击编辑器上方的开始按钮(地球右边那个)，不出意外以浏览器的方式打开你的游戏。这里最好打开F12控制台。</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220717194829425.png" alt="image-20220717194829425"></p>
 <p>如果你的界面里有一个按钮，点击它以后控制台提示<strong>LoadScene game: xxx ms</strong>，说明你就成功了！</p>
 <h3 id="游戏元素管理"><a href="#游戏元素管理" class="headerlink" title="游戏元素管理"></a>游戏元素管理</h3><p>好！你进入了游戏场景，可以开始准备制作这个场景里的每个元素了。</p>
 <p>以下面这个<a href="http://flappybird.io/">FlappyBird</a>为例</p>
-<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-1.gif" alt="gif-1"></p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-1.gif" alt="image-20220722230600000"></p>
 <p>这个游戏场景包含下面几个元素</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220722221006045.png" alt="image-20220722221006045"></p>
 <p>为了让这些元素组合在一起动起来，这里就需要一个脚本来驱动它们了。打开之前新建的GameManager脚本，让我们来一个个制作并应用这些元素。</p>
 <h4 id="计分板"><a href="#计分板" class="headerlink" title="计分板"></a>计分板</h4><p>还记得<a href="#1">之前</a>讲过的按钮吗？之所以选择先做计分板是因为创建计分板所在的标签(Label)会附带一个画布(Canvas),这个画布又包含了一个摄像机(Camera)，这正好能拿来当游戏的视角</p>
-<p>在游戏场景的根节点新建一个Label，命名为lb_score,再把它的位置往上移，比如到y轴250的位置，再调整一下文本的字号，Label的大小会随文本大小而变化</p>
+<p>在游戏场景的节点下新建一个Label，命名为lb_score,再把它的位置往上移，比如到y轴250的位置，再调整一下文本的字号，Label的大小会随文本大小而变化</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220722235134220.png" alt="image-20220722235134220"></p>
 <ul>
 <li>这个Label的坐标是<strong>相对于他的父节点的</strong>，对于以后所有部件都是如此</li>
@@ -602,7 +604,7 @@
 <p>这里我们在根节点下新建一个3D对象-球体，命名为Bird，将他的位置(Position)设定在(160,320,0)，大小(Scale)设置为(20,20,20)，再把渲染层级(Layer)改为None，让他能不受限制地被摄像机渲染出来</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220723174317723.png" alt="image-20220723174317723"></p>
 <p>我们再为他新建一个脚本，命名为BirdCtrl，在这里面，我们要让它动起来。</p>
-<p>首先，我们先来实现起跳。其实跳跃无非就是让他当前的垂直速度变为向上，为了操作物体的速度，引擎里需要我们把这个物体变为<strong>刚体</strong>(RigidBody)，通俗来讲就是把他变成实心的，能够感知这个物理世界。为此，我们需要为Bird添加刚体组件</p>
+<h5 id="开启物理系统"><a href="#开启物理系统" class="headerlink" title="开启物理系统"></a>开启物理系统</h5><p>首先，我们先来实现起跳。其实跳跃无非就是让他当前的垂直速度变为向上，为了操作物体的速度，引擎里需要我们把这个物体变为<strong>刚体</strong>(RigidBody)，通俗来讲就是把他变成实心的，能够感知这个物理世界。为此，我们需要为Bird添加刚体组件</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-2.gif" alt="gif-2"></p>
 <p>打开BirdCtrl，在类内声明一个<strong>资产变量</strong>Bird，类型为Node</p>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="meta">@property</span>(<span class="title class_">Node</span>)</span><br><span class="line"><span class="title class_">Bird</span>:<span class="title class_">Node</span> = <span class="literal">null</span>!</span><br></pre></td></tr></table></figure>
@@ -616,9 +618,9 @@
 <blockquote>
 <p>这个语句作用是在Bird节点里<strong>按名字寻找</strong>刚体组件，再调用组件里<strong>设定线性速度</strong>的方法，参数是<strong>三维坐标对象v3</strong></p>
 </blockquote>
-<p>保存代码，将BirdCtrl拖入节点树中，将Bird拖入右侧的栏位中，保存场景。这时候运行游戏你就能发现一个向上飞的小球(你的鸟)了</p>
+<p>保存代码，将BirdCtrl脚本拖入节点树中，将Bird拖入右侧的栏位中，保存场景。这时候运行游戏你就能发现一个向上飞的小球(你的鸟)了</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-3.gif" alt="gif-3"></p>
-<p>但光让他自己不受限制地移动显然不够，他还需要听我们的话，我们点一下鼠标他就跳一下。为了让游戏引擎知道我们在点击鼠标，这里我们需要<strong>开启鼠标监听</strong></p>
+<h5 id="开启输入监听"><a href="#开启输入监听" class="headerlink" title="开启输入监听"></a>开启输入监听</h5><p>但光让他自己不受限制地移动显然不够，他还需要听我们的话，我们点一下鼠标他就跳一下。为了让游戏引擎知道我们在点击鼠标，这里我们需要<strong>开启鼠标监听</strong></p>
 <p>将刚才复制进start函数里的内容写进新的函数里，比如onMouseClick。在start函数里写入如下语句</p>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">input.<span class="title function_">on</span>(<span class="title class_">Input</span>.<span class="property">EventType</span>.<span class="property">MOUSE_DOWN</span>,<span class="variable language_">this</span>.<span class="property">onMouseClick</span>,<span class="variable language_">this</span>);</span><br></pre></td></tr></table></figure>
 
@@ -629,7 +631,7 @@
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">onMouseClick</span>(<span class="params">event: EventMouse</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">Bird</span>.<span class="title function_">getComponent</span>(<span class="title class_">RigidBody</span>).<span class="title function_">setLinearVelocity</span>(<span class="title function_">v3</span>(<span class="number">0</span>,<span class="number">300</span>,<span class="number">0</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>之后你的鸟就会在你点击鼠标之后跳起来了。</p>
-<p>接着，我们再来实现下落，这里依靠游戏内物理引擎的<strong>重力</strong>来实现。你可能已经注意到了，在之前开启刚体组件的时候就已经有重力下落了。但很显然，这点蚊子腿的下落速度肯定不够看。为此，我们需要调整<strong>世界重力</strong>和物体的<strong>速度阻尼</strong></p>
+<h5 id="调整物理世界参数"><a href="#调整物理世界参数" class="headerlink" title="调整物理世界参数"></a>调整物理世界参数</h5><p>接着，我们再来实现下落，这里依靠游戏内物理引擎的<strong>重力</strong>来实现。你可能已经注意到了，在之前开启刚体组件的时候就已经有重力下落了。但很显然，这点蚊子腿的下落速度肯定不够看。为此，我们需要调整<strong>世界重力</strong>和物体的<strong>速度阻尼</strong></p>
 <p>在start函数里写入</p>
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">PhysicsSystem</span>.<span class="property">instance</span>.<span class="property">gravity</span>=<span class="title function_">v3</span>(<span class="number">0</span>,-<span class="number">500</span>,<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 
@@ -640,15 +642,63 @@
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">Bird</span>.<span class="title function_">getComponent</span>(<span class="title class_">RigidBody</span>).<span class="property">linearDamping</span>=<span class="number">0.1</span>;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>这个语句了刚体里线性阻尼的值，其值是一个数</p>
+<p>这个语句设置了刚体里线性阻尼的值，其值是一个数，数字越大，速度衰减越快</p>
 </blockquote>
 <p>最终代码如下</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; _decorator, <span class="title class_">Component</span>, <span class="title class_">Node</span>, <span class="title class_">RigidBody</span>, v3, input, <span class="title class_">Input</span>, <span class="title class_">EventMouse</span>, <span class="title class_">PhysicsSystem</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&#x27;BirdCtrl&#x27;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">BirdCtrl</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@property</span>(<span class="title class_">Node</span>)</span><br><span class="line">    <span class="title class_">Bird</span>:<span class="title class_">Node</span> = <span class="literal">null</span>!</span><br><span class="line"></span><br><span class="line">    <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">        input.<span class="title function_">on</span>(<span class="title class_">Input</span>.<span class="property">EventType</span>.<span class="property">MOUSE_DOWN</span>,<span class="variable language_">this</span>.<span class="property">onMouseClick</span>,<span class="variable language_">this</span>);</span><br><span class="line">        <span class="title class_">PhysicsSystem</span>.<span class="property">instance</span>.<span class="property">gravity</span>=<span class="title function_">v3</span>(<span class="number">0</span>,-<span class="number">500</span>,<span class="number">0</span>);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">Bird</span>.<span class="title function_">getComponent</span>(<span class="title class_">RigidBody</span>).<span class="property">linearDamping</span>=<span class="number">0.1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">onMouseClick</span>(<span class="params">event: EventMouse</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">Bird</span>.<span class="title function_">getComponent</span>(<span class="title class_">RigidBody</span>).<span class="title function_">setLinearVelocity</span>(<span class="title function_">v3</span>(<span class="number">0</span>,<span class="number">300</span>,<span class="number">0</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    update(deltaTime: number) &#123;</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">    &#125;//还用不上</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//BirdCtrl.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; _decorator, <span class="title class_">Component</span>, <span class="title class_">Node</span>, <span class="title class_">RigidBody</span>, v3, input, <span class="title class_">Input</span>, <span class="title class_">EventMouse</span>, <span class="title class_">PhysicsSystem</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&#x27;BirdCtrl&#x27;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">BirdCtrl</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@property</span>(<span class="title class_">Node</span>)</span><br><span class="line">    <span class="title class_">Bird</span>:<span class="title class_">Node</span> = <span class="literal">null</span>!</span><br><span class="line"></span><br><span class="line">    <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">        input.<span class="title function_">on</span>(<span class="title class_">Input</span>.<span class="property">EventType</span>.<span class="property">MOUSE_DOWN</span>,<span class="variable language_">this</span>.<span class="property">onMouseClick</span>,<span class="variable language_">this</span>);</span><br><span class="line">        <span class="title class_">PhysicsSystem</span>.<span class="property">instance</span>.<span class="property">gravity</span>=<span class="title function_">v3</span>(<span class="number">0</span>,-<span class="number">500</span>,<span class="number">0</span>);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">Bird</span>.<span class="title function_">getComponent</span>(<span class="title class_">RigidBody</span>).<span class="property">linearDamping</span>=<span class="number">0.1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">onMouseClick</span>(<span class="params">event: EventMouse</span>)&#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">Bird</span>.<span class="title function_">getComponent</span>(<span class="title class_">RigidBody</span>).<span class="title function_">setLinearVelocity</span>(<span class="title function_">v3</span>(<span class="number">0</span>,<span class="number">300</span>,<span class="number">0</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    update(deltaTime: number) &#123;</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">    &#125;//还用不上</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这时候保存代码和场景并运行，你就能看到一只听你指挥的鸟了</p>
 <p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/gif-4.gif" alt="gif-4"></p>
-<h4 id="障碍物"><a href="#障碍物" class="headerlink" title="障碍物"></a>障碍物</h4><p>WIP</p>
-]]></content>
+<h4 id="障碍物"><a href="#障碍物" class="headerlink" title="障碍物"></a>障碍物</h4><p>有了上面的例子，障碍物的实现其实很简单。鉴于障碍物需要重复生成很多次，这里使用<strong>预制体</strong>(Prefab)来构造。在资源管理器里新建一个预制体，命名为brick，双击打开它。在里面新建两个圆柱体，命名为Up和Down，把它们的尺寸调整为(30,500,30)，坐标分别调整为(0,±550,0)，再把它的渲染层级调整为None，这样，你就得到了一个简略的柱子</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220724000315146.png" alt="image-20220724000315146"></p>
+<p>有了柱子，接下来就要思考怎么把他应用在场景里了。这里分解成三个部分</p>
+<ol>
+<li>柱子的生成</li>
+<li>柱子的移动</li>
+<li>柱子的碰撞检测</li>
+</ol>
+<p>这里一个个来说</p>
+<h5 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h5><p>我们需要将柱子<strong>实例化</strong>(instantiate)生成到场景里。打开GameManager脚本，在类内声明一个资产变量pref_Brick，类型为Prefab。再声明一个函数，命名为summonBricks。在函数里填入如下语句</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="meta">@property</span>(<span class="title class_">Prefab</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="attr">pref_Brick</span>:<span class="title class_">Prefab</span> = <span class="literal">null</span>!</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="title function_">summonBricks</span>(<span class="params"></span>)&#123;<span class="comment">//是否定义为私有不影响，下同</span></span><br><span class="line">        <span class="keyword">const</span> newBrick=<span class="title function_">instantiate</span>(<span class="variable language_">this</span>.<span class="property">pref_Brick</span>);<span class="comment">//实例化</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>instantiate(Prefab)方法可以把一个预制体<strong>实例化</strong>，使其成为一个节点，其参数为一个预制体。同时，该节点也是方法的返回值，可以赋值给变量用于后续操作</p>
+</blockquote>
+<p>但是，仅仅是实例化还不够，这个预制体的实例还不知道他在节点树的位置，也不知道他在场景里的相对位置。所以，我们需要额外声明一个资产变量nd_BrickPlace</p>
+<p>同时，在Canvas下新建一个名为BrickPlace的空节点，把他拖到Canvas内的位置(方便测试的时候看就行)。此外，在summonBricks函数中补充如下语句</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">nd_BrickPlace</span>.<span class="title function_">addChild</span>(newBrick);<span class="comment">//添加子节点</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>addChild(Node)方法用于向父节点添加子节点，参数为一个节点</p>
+</blockquote>
+<p>和</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">newBrick.<span class="title function_">setPosition</span>(<span class="title function_">v3</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>));<span class="comment">//设置节点的相对位置</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>setPosition(v3)方法用于设置节点的相对位置，参数为一个三维坐标</p>
+</blockquote>
+<p>最后，在start函数里调用这个函数，保存。目前代码如下</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; _decorator, <span class="title class_">Component</span>, <span class="title class_">Node</span>, <span class="title class_">Prefab</span>, math, v3, instantiate, tween &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; ccclass, property &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&#x27;GameManager&#x27;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">GameManager</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123; </span><br><span class="line">    <span class="comment">//障碍物</span></span><br><span class="line">    <span class="meta">@property</span>(<span class="title class_">Prefab</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="attr">pref_Brick</span>:<span class="title class_">Prefab</span> = <span class="literal">null</span>!</span><br><span class="line">    <span class="comment">//障碍物生成节点</span></span><br><span class="line">    <span class="meta">@property</span>(<span class="title class_">Node</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="attr">nd_BrickPlace</span>:<span class="title class_">Node</span> = <span class="literal">null</span>!</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">summonBricks</span>(<span class="params"></span>)&#123;<span class="comment">//是否定义为私有不影响，下同</span></span><br><span class="line">        <span class="keyword">const</span> newBrick=<span class="title function_">instantiate</span>(<span class="variable language_">this</span>.<span class="property">pref_Brick</span>);<span class="comment">//实例化</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">nd_BrickPlace</span>.<span class="title function_">addChild</span>(newBrick);<span class="comment">//添加子节点</span></span><br><span class="line">        newBrick.<span class="title function_">setPosition</span>(<span class="title function_">v3</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>));<span class="comment">//设置节点的相对位置</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">summonBricks</span>();</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在场景节点下应用GameManager脚本，并在编辑器内应用障碍物预制体和生成节点，保存并运行查看结果</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220724225149224.png" alt="image-20220724225149224"></p>
+<p>能在屏幕内看到生成的柱子，说明目前为止你成功了！</p>
+<p><img src="/images/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/image-20220725000219869.png" alt="image-20220725000219869"></p>
+<ul>
+<li>部分人可能会遇到一根歪的柱子，这是因为你的主摄像机还保持着默认状态，他与Canvas的视角是<strong>叠加</strong>的，所以你只要在场景里把主摄像机挪开，转个向就可以了(但不要删掉)</li>
+</ul>
+<p>但很显然，只生成一根柱子太没有挑战性了，我们需要更多的柱子才能保持持续的游戏体验。因此，我们可以使用一个循环来实现。</p>
+<p>在GameManager里声明一个变量Timer与一个函数checkTimer，代码如下</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//计时器</span></span><br><span class="line"><span class="keyword">private</span> <span class="title class_">Timer</span> = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="title function_">checkTimer</span>(<span class="params"></span>)&#123;<span class="comment">//每一定间隔生成砖块</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">Timer</span>&lt;<span class="number">300</span>)&#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">Timer</span>++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">Timer</span>=<span class="number">0</span>;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">summonBricks</span>();</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Summon&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个代码逻辑是每调用300次这个函数就会生成一个障碍物</p>
+<p>在update函数里调用这个函数。保存代码与场景，运行测试一下。打开浏览器的F12控制台，如果你能看到周期性产出的“Summon”就算成功了。</p>
+<blockquote>
+<p>update函数会在游戏的每一帧调用一次，所以相当于每 300帧生成一个砖块</p>
+</blockquote>
+<p>WIP</p>
+<h1 id="Todo-List"><a href="#Todo-List" class="headerlink" title="Todo List"></a>Todo List</h1><hr>
+<h5 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h5><h5 id="碰撞检测"><a href="#碰撞检测" class="headerlink" title="碰撞检测"></a>碰撞检测</h5><h3 id="游戏机制"><a href="#游戏机制" class="headerlink" title="游戏机制"></a>游戏机制</h3><h4 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h4><h4 id="得分判定"><a href="#得分判定" class="headerlink" title="得分判定"></a>得分判定</h4><h4 id="死亡判定"><a href="#死亡判定" class="headerlink" title="死亡判定"></a>死亡判定</h4><h4 id="暂停界面"><a href="#暂停界面" class="headerlink" title="暂停界面"></a>暂停界面</h4><h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="游戏变量分离"><a href="#游戏变量分离" class="headerlink" title="游戏变量分离"></a>游戏变量分离</h3><h3 id="游戏场景美化"><a href="#游戏场景美化" class="headerlink" title="游戏场景美化"></a>游戏场景美化</h3><h3 id="随机事件奖励"><a href="#随机事件奖励" class="headerlink" title="随机事件奖励"></a>随机事件奖励</h3><h3 id="用户内容自定义"><a href="#用户内容自定义" class="headerlink" title="用户内容自定义"></a>用户内容自定义</h3>]]></content>
       <categories>
         <category>笔记</category>
       </categories>
