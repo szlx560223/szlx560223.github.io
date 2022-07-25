@@ -397,53 +397,6 @@
       </tags>
   </entry>
   <entry>
-    <title>离散笔记</title>
-    <url>/2022/07/13/%E7%A6%BB%E6%95%A3%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="自己做的，如有疏漏请见谅"><a href="#自己做的，如有疏漏请见谅" class="headerlink" title="自己做的，如有疏漏请见谅"></a>自己做的，如有疏漏请见谅</h2><span id="more"></span>
-
-<embed src="/pdf/离散提纲v2.2.pdf" width="100%" height="1500" type="application/pdf">]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>离散数学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>线代笔记</title>
-    <url>/2022/07/13/%E7%BA%BF%E4%BB%A3%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="自己做的，如有疏漏请见谅"><a href="#自己做的，如有疏漏请见谅" class="headerlink" title="自己做的，如有疏漏请见谅"></a>自己做的，如有疏漏请见谅</h2><span id="more"></span>
-
-<h3 id="Part1-提纲"><a href="#Part1-提纲" class="headerlink" title="Part1.提纲"></a>Part1.提纲</h3><embed src="/pdf/线代提纲.pdf" width="100%" height="1500" type="application/pdf">
-
-<h3 id="Part2-课本例题"><a href="#Part2-课本例题" class="headerlink" title="Part2.课本例题"></a>Part2.课本例题</h3><embed src="/pdf/线代例题.pdf" width="100%" height="1500" type="application/pdf">
-
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>线性代数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>高数笔记</title>
-    <url>/2022/07/13/%E9%AB%98%E6%95%B0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="由OneNote导出，排版一言难尽"><a href="#由OneNote导出，排版一言难尽" class="headerlink" title="由OneNote导出，排版一言难尽"></a>由OneNote导出，排版一言难尽</h2><span id="more"></span>
-
-<h3 id="高数上"><a href="#高数上" class="headerlink" title="高数上"></a>高数上</h3><embed src="/pdf/高数上.pdf" width="100%" height="750" type="application/pdf">
-
-<h3 id="高数下"><a href="#高数下" class="headerlink" title="高数下"></a>高数下</h3><h4 id="提纲"><a href="#提纲" class="headerlink" title="提纲"></a>提纲</h4><embed src="/pdf/高数下.pdf" width="100%" height="750" type="application/pdf">
-
-<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><embed src="/pdf/高数下例题.pdf" width="100%" height="750" type="application/pdf">]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>高等数学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>游戏开发笔记#2——2022暑假自制Flappy Bird</title>
     <url>/2022/07/14/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2%E2%80%94%E2%80%942022%E6%9A%91%E5%81%87%E8%87%AA%E5%88%B6Flappy-Bird/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>写这篇笔记的想法源于之前参加的Cocos开发实训，舍友说老师讲的太泛了点听课门槛略高，故我打算在此以稍微平易近人一点的语言描述我这次的开发之旅，因此这篇教程会十分啰嗦，还请读者按需阅读。</p>
@@ -736,6 +689,53 @@
       <tags>
         <tag>Cocos</tag>
         <tag>游戏开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>离散笔记</title>
+    <url>/2022/07/13/%E7%A6%BB%E6%95%A3%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="自己做的，如有疏漏请见谅"><a href="#自己做的，如有疏漏请见谅" class="headerlink" title="自己做的，如有疏漏请见谅"></a>自己做的，如有疏漏请见谅</h2><span id="more"></span>
+
+<embed src="/pdf/离散提纲v2.2.pdf" width="100%" height="1500" type="application/pdf">]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>离散数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高数笔记</title>
+    <url>/2022/07/13/%E9%AB%98%E6%95%B0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="由OneNote导出，排版一言难尽"><a href="#由OneNote导出，排版一言难尽" class="headerlink" title="由OneNote导出，排版一言难尽"></a>由OneNote导出，排版一言难尽</h2><span id="more"></span>
+
+<h3 id="高数上"><a href="#高数上" class="headerlink" title="高数上"></a>高数上</h3><embed src="/pdf/高数上.pdf" width="100%" height="750" type="application/pdf">
+
+<h3 id="高数下"><a href="#高数下" class="headerlink" title="高数下"></a>高数下</h3><h4 id="提纲"><a href="#提纲" class="headerlink" title="提纲"></a>提纲</h4><embed src="/pdf/高数下.pdf" width="100%" height="750" type="application/pdf">
+
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><embed src="/pdf/高数下例题.pdf" width="100%" height="750" type="application/pdf">]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>高等数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线代笔记</title>
+    <url>/2022/07/13/%E7%BA%BF%E4%BB%A3%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="自己做的，如有疏漏请见谅"><a href="#自己做的，如有疏漏请见谅" class="headerlink" title="自己做的，如有疏漏请见谅"></a>自己做的，如有疏漏请见谅</h2><span id="more"></span>
+
+<h3 id="Part1-提纲"><a href="#Part1-提纲" class="headerlink" title="Part1.提纲"></a>Part1.提纲</h3><embed src="/pdf/线代提纲.pdf" width="100%" height="1500" type="application/pdf">
+
+<h3 id="Part2-课本例题"><a href="#Part2-课本例题" class="headerlink" title="Part2.课本例题"></a>Part2.课本例题</h3><embed src="/pdf/线代例题.pdf" width="100%" height="1500" type="application/pdf">
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>线性代数</tag>
       </tags>
   </entry>
 </search>
