@@ -1177,6 +1177,7 @@
 </ul>
 <p>受限于篇幅，这里省略。你可以自己实现，如有需要可以下载项目工程文件</p>
 <p><a href="/resources/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-2/FlappyBird.zip">点此下载</a></p>
+<p><a href="https://github.com/szlx560223/Flappy_Bird">项目地址</a></p>
 <h3 id="还可以做的事情"><a href="#还可以做的事情" class="headerlink" title="还可以做的事情"></a>还可以做的事情</h3><ul>
 <li>随机事件<ul>
 <li>无敌</li>
@@ -1189,7 +1190,9 @@
 <li>障碍物上下摆动</li>
 <li>背景切换（白天&amp;黑夜）</li>
 <li>设置的导出与还原</li>
+<li>粒子效果</li>
 <li>鸟儿皮肤变更</li>
+<li>…</li>
 </ul>
 <hr>
 <p>全文到此结束，感谢你的阅读！</p>
@@ -1200,6 +1203,100 @@
       <tags>
         <tag>Cocos</tag>
         <tag>游戏开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git使用笔记</title>
+    <url>/2022/08/22/Git%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Usage</th>
+<th>Args</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git init</td>
+<td>初始化一个空的仓库</td>
+<td></td>
+</tr>
+<tr>
+<td>git add</td>
+<td>把文件从工作区添加至暂存区</td>
+<td><code>&lt;filename&gt; </code>文件名<br /><code>-A</code> 所有文件</td>
+</tr>
+<tr>
+<td>git commit</td>
+<td>将暂存区的更改同步至本地仓库</td>
+<td><code>-m &lt;message&gt;</code> 提交注释(必填)</td>
+</tr>
+<tr>
+<td>git push</td>
+<td>将本地仓库的内容推送至远程仓库</td>
+<td><code>-u &lt;upstream&gt; &lt;branch&gt;</code> 远程仓库分支</td>
+</tr>
+<tr>
+<td>git clone</td>
+<td>复制仓库</td>
+<td><code>&lt;repo&gt;</code>仓库git地址</td>
+</tr>
+<tr>
+<td>git diff</td>
+<td>对比差异</td>
+<td></td>
+</tr>
+<tr>
+<td>git branch</td>
+<td>仓库分支</td>
+<td><code>-add &lt;name&gt;</code>添加分支<br/><code>-m</code> 移动</td>
+</tr>
+<tr>
+<td>git switch</td>
+<td>切换分支</td>
+<td><code>&lt;branch&gt;</code>仓库分支</td>
+</tr>
+<tr>
+<td>git fetch</td>
+<td>从远程仓库拉取到本地仓库</td>
+<td></td>
+</tr>
+<tr>
+<td>git pull</td>
+<td>从远程仓库拉取到工作区</td>
+<td></td>
+</tr>
+<tr>
+<td>git merge</td>
+<td>合并分支</td>
+<td></td>
+</tr>
+<tr>
+<td>git remote add</td>
+<td>添加远程仓库</td>
+<td><code>&lt;name&gt; &lt;repo&gt;</code>仓库名 仓库git地址</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Go笔记</title>
+    <url>/2022/08/22/Go%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>todo</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
       </tags>
   </entry>
 </search>
