@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-corner-indicator.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#000","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一、基础0.IMPORTANT 此笔记仅记录新增(或我不熟悉的)内容，与cpp相同的内容在此笔记中忽略(所以并没有参考价值)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java笔记">
+<meta property="og:url" content="http://example.com/2022/07/11/Java%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="FireEgg&#39;s Blog">
+<meta property="og:description" content="一、基础0.IMPORTANT 此笔记仅记录新增(或我不熟悉的)内容，与cpp相同的内容在此笔记中忽略(所以并没有参考价值)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220711175059568.png">
+<meta property="og:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220713133027509.png">
+<meta property="og:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220713133102557.png">
+<meta property="og:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220713133143492.png">
+<meta property="og:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220713133237925.png">
+<meta property="og:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220713133254172.png">
+<meta property="og:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220713133538596.png">
+<meta property="og:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220713133555372.png">
+<meta property="og:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220713140610665.png">
+<meta property="og:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220713140641849.png">
+<meta property="og:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220713140653194.png">
+<meta property="article:published_time" content="2022-07-11T15:15:06.000Z">
+<meta property="article:modified_time" content="2023-01-01T14:38:40.300Z">
+<meta property="article:author" content="Fire Egg">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/Java%E7%AC%94%E8%AE%B0/image-20220711175059568.png">
+
+
+<link rel="canonical" href="http://example.com/2022/07/11/Java%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/07/11/Java%E7%AC%94%E8%AE%B0/","path":"2022/07/11/Java笔记/","title":"Java笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java笔记 | FireEgg's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">FireEgg's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">一、基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-IMPORTANT"><span class="nav-number">1.1.</span> <span class="nav-text">0.IMPORTANT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%A8%8B%E5%BA%8F%E6%A0%B7%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text">1.程序样例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.</span> <span class="nav-text">2.数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%BD%AC%E4%B9%89%E7%AC%A6%E5%8F%B7"><span class="nav-number">1.4.</span> <span class="nav-text">3.转义符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-number">1.5.</span> <span class="nav-text">4.标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">1.6.</span> <span class="nav-text">5.位运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E8%BF%90%E7%AE%97%E9%A1%BA%E5%BA%8F"><span class="nav-number">1.7.</span> <span class="nav-text">6.运算顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.8.</span> <span class="nav-text">7.循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2String"><span class="nav-number">2.</span> <span class="nav-text">二、字符串String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">1.声明方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">2.常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-length"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.length()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-indexOf-string"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.indexOf(string)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-lastIndexOf-string"><span class="nav-number">2.2.3.</span> <span class="nav-text">3.lastIndexOf(string)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-charAt-int"><span class="nav-number">2.2.4.</span> <span class="nav-text">4.charAt(int)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-substring-int-start-int-end"><span class="nav-number">2.2.5.</span> <span class="nav-text">5.substring(int start,int end)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-trim"><span class="nav-number">2.2.6.</span> <span class="nav-text">6.trim()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-replace-char-old-char-new"><span class="nav-number">2.2.7.</span> <span class="nav-text">7.replace(char old,char new)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-startsWith-string"><span class="nav-number">2.2.8.</span> <span class="nav-text">8.startsWith(string)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-endsWith-string"><span class="nav-number">2.2.9.</span> <span class="nav-text">9.endsWith(string)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-equals-string"><span class="nav-number">2.2.10.</span> <span class="nav-text">10.equals(string)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-equalsIgnoreCase-string"><span class="nav-number">2.2.11.</span> <span class="nav-text">11.equalsIgnoreCase(string)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-compareTo-x3D-string"><span class="nav-number">2.2.12.</span> <span class="nav-text">12.compareTo*&#x3D;(string)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-toLowerCase"><span class="nav-number">2.2.13.</span> <span class="nav-text">13.toLowerCase()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-toUpperCase"><span class="nav-number">2.2.14.</span> <span class="nav-text">14.toUpperCase()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-spilt-string-int"><span class="nav-number">2.2.15.</span> <span class="nav-text">15.spilt(string,int)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-String-format-String-format-Object-arg"><span class="nav-number">2.2.16.</span> <span class="nav-text">16.String.format(String format,Object arg)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">3.正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%85%83%E5%AD%97%E7%AC%A6"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.元字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AF%AD%E6%B3%95"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-StringBuilder"><span class="nav-number">2.4.</span> <span class="nav-text">4.StringBuilder</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%95%B0%E7%BB%84Array"><span class="nav-number">3.</span> <span class="nav-text">三、数组Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F-1"><span class="nav-number">3.1.</span> <span class="nav-text">1.声明方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="nav-number">3.2.</span> <span class="nav-text">2.常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-length-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">1.length</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-fill-int-a-int-start-int-end-int-value"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.fill(int[] a,int start,int end,int value)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Arrays-sort-array"><span class="nav-number">3.2.3.</span> <span class="nav-text">3.Arrays.sort(array)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-copyOf-array-int"><span class="nav-number">3.2.4.</span> <span class="nav-text">4.copyOf(array,int)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-copyOfRange-array-int-start-int-end"><span class="nav-number">3.2.5.</span> <span class="nav-text">5.copyOfRange(array,int start,int end)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-binarySearch-array-key-start-end"><span class="nav-number">3.2.6.</span> <span class="nav-text">6.binarySearch(array,key,start,end)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">3.排序算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.</span> <span class="nav-text">四、类与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">4.1.</span> <span class="nav-text">1.修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-this"><span class="nav-number">4.2.</span> <span class="nav-text">2.this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%9D%99%E6%80%81static"><span class="nav-number">4.3.</span> <span class="nav-text">3.静态static</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%B1%BB%E7%9A%84%E4%B8%BB%E6%96%B9%E6%B3%95"><span class="nav-number">4.4.</span> <span class="nav-text">4.类的主方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%9E%84%E9%80%A0"><span class="nav-number">4.5.</span> <span class="nav-text">5.构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">4.6.</span> <span class="nav-text">6.对象的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%94%80%E6%AF%81"><span class="nav-number">4.7.</span> <span class="nav-text">7.对象的销毁</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fire Egg"
+      src="/images/avatar.JPG">
+  <p class="site-author-name" itemprop="name">Fire Egg</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/szlx560223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;szlx560223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/6538879" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;6538879" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/11/Java%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.JPG">
+      <meta itemprop="name" content="Fire Egg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FireEgg's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Java笔记 | FireEgg's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-11 23:15:06" itemprop="dateCreated datePublished" datetime="2022-07-11T23:15:06+08:00">2022-07-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-01 22:38:40" itemprop="dateModified" datetime="2023-01-01T22:38:40+08:00">2023-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.4k</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="一、基础"><a href="#一、基础" class="headerlink" title="一、基础"></a>一、基础</h2><h3 id="0-IMPORTANT"><a href="#0-IMPORTANT" class="headerlink" title="0.IMPORTANT"></a>0.IMPORTANT</h3><ul>
+<li>此笔记仅记录新增(或我不熟悉的)内容，与cpp相同的内容在此笔记中忽略(所以并没有参考价值)</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="1-程序样例"><a href="#1-程序样例" class="headerlink" title="1.程序样例"></a>1.程序样例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Name</span> &#123; <span class="comment">// 定义类</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123; <span class="comment">// 主方法，定义方法须与样例完全一致</span></span><br><span class="line">		<span class="comment">//do something</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>文件名与类名一致</li>
+</ul>
+<h3 id="2-数据类型"><a href="#2-数据类型" class="headerlink" title="2.数据类型"></a>2.数据类型</h3><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">空间</th>
+<th align="center">范围</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">byte</td>
+<td align="center">8</td>
+<td align="center">-2^7~2^7-1</td>
+<td align="center">8位&#x3D;1byte</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">16</td>
+<td align="center">-2^15~2^15-1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">32</td>
+<td align="center">-2^31~2^31-1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">64</td>
+<td align="center">-2^63~2^63-1</td>
+<td align="center">数据末尾+L\l</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">32</td>
+<td align="center">较大</td>
+<td align="center">数据末尾+F\f</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">64</td>
+<td align="center">很大</td>
+<td align="center">数据末尾+D\d(默认)</td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">16</td>
+<td align="center">0~2^16</td>
+<td align="center">用’ ‘表示，使用Unicode</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center"></td>
+<td align="center">0,1</td>
+<td align="center">不能进行类型转换</td>
+</tr>
+</tbody></table>
+<h3 id="3-转义符号"><a href="#3-转义符号" class="headerlink" title="3.转义符号"></a>3.转义符号</h3><table>
+<thead>
+<tr>
+<th align="left">转义</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">\ddd</td>
+<td>八进制数表示的字符</td>
+</tr>
+<tr>
+<td align="left">\uxxxx</td>
+<td>十六进制数表示的字符</td>
+</tr>
+<tr>
+<td align="left">\‘</td>
+<td>‘</td>
+</tr>
+<tr>
+<td align="left">\\</td>
+<td>\</td>
+</tr>
+<tr>
+<td align="left">\t</td>
+<td>制表符</td>
+</tr>
+<tr>
+<td align="left">\r</td>
+<td>回车</td>
+</tr>
+<tr>
+<td align="left">\n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td align="left">\b</td>
+<td>退格</td>
+</tr>
+<tr>
+<td align="left">\f</td>
+<td>换页</td>
+</tr>
+</tbody></table>
+<h3 id="4-标识符"><a href="#4-标识符" class="headerlink" title="4.标识符"></a>4.标识符</h3><ul>
+<li>由Unicode字母，数字，_，$构成，开头不能为数字</li>
+<li>变量声明与cpp相同<ul>
+<li>成员变量在类内</li>
+<li>局部变量在方法内</li>
+</ul>
+</li>
+<li>常量声明final</li>
+<li>静态声明static</li>
+</ul>
+<h3 id="5-位运算"><a href="#5-位运算" class="headerlink" title="5.位运算"></a>5.位运算</h3><ul>
+<li><p>可对byte,short,char,int,long运算</p>
+</li>
+<li><p>有~(取反)，&amp;(且)，|(或)</p>
+</li>
+<li><p>&lt;&lt;左移左侧舍弃，右侧补零，&gt;&gt;右移右侧舍弃，左侧按原最左位补数</p>
+</li>
+</ul>
+<h3 id="6-运算顺序"><a href="#6-运算顺序" class="headerlink" title="6.运算顺序"></a>6.运算顺序</h3><p><img src="/images/Java%E7%AC%94%E8%AE%B0/image-20220711175059568.png" alt="image-20220711175059568"></p>
+<h3 id="7-循环"><a href="#7-循环" class="headerlink" title="7.循环"></a>7.循环</h3><ul>
+<li>foreach<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> a:object)</span><br></pre></td></tr></table></figure>
+其他略</li>
+</ul>
+<h2 id="二、字符串String"><a href="#二、字符串String" class="headerlink" title="二、字符串String"></a>二、字符串String</h2><h3 id="1-声明方式"><a href="#1-声明方式" class="headerlink" title="1.声明方式"></a>1.声明方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s1=<span class="string">&quot;abc&quot;</span>;</span><br><span class="line"><span class="type">char</span> a[]=&#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>&#125;;</span><br><span class="line">String s2=<span class="keyword">new</span> <span class="title class_">String</span>(a);</span><br><span class="line">String s3=<span class="keyword">new</span> <span class="title class_">String</span>(a,<span class="number">1</span>,<span class="number">2</span>);<span class="comment">//&quot;bc&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-常用方法"><a href="#2-常用方法" class="headerlink" title="2.常用方法"></a>2.常用方法</h3><h4 id="1-length"><a href="#1-length" class="headerlink" title="1.length()"></a>1.length()</h4><ul>
+<li>返回长度</li>
+</ul>
+<h4 id="2-indexOf-string"><a href="#2-indexOf-string" class="headerlink" title="2.indexOf(string)"></a>2.indexOf(string)</h4><ul>
+<li>返回子串string第一次出现的位置(下标)，否则返回-1</li>
+</ul>
+<h4 id="3-lastIndexOf-string"><a href="#3-lastIndexOf-string" class="headerlink" title="3.lastIndexOf(string)"></a>3.lastIndexOf(string)</h4><ul>
+<li>返回子串string最后一次出现的位置(下标)，否则返回-1</li>
+</ul>
+<h4 id="4-charAt-int"><a href="#4-charAt-int" class="headerlink" title="4.charAt(int)"></a>4.charAt(int)</h4><ul>
+<li>返回int位置的字符</li>
+</ul>
+<h4 id="5-substring-int-start-int-end"><a href="#5-substring-int-start-int-end" class="headerlink" title="5.substring(int start,int end)"></a>5.substring(int start,int end)</h4><ul>
+<li>一个参数：返回(包含)start位置之后的子串</li>
+<li>两个参数：返回从start位置(包含)到end位置(不含)的子串</li>
+</ul>
+<h4 id="6-trim"><a href="#6-trim" class="headerlink" title="6.trim()"></a>6.trim()</h4><ul>
+<li>去掉空格</li>
+</ul>
+<h4 id="7-replace-char-old-char-new"><a href="#7-replace-char-old-char-new" class="headerlink" title="7.replace(char old,char new)"></a>7.replace(char old,char new)</h4><ul>
+<li>将字符串里所有old替换成new后返回，无替换返回原串</li>
+</ul>
+<h4 id="8-startsWith-string"><a href="#8-startsWith-string" class="headerlink" title="8.startsWith(string)"></a>8.startsWith(string)</h4><ul>
+<li>判断是否以string开头，返回Boolean</li>
+</ul>
+<h4 id="9-endsWith-string"><a href="#9-endsWith-string" class="headerlink" title="9.endsWith(string)"></a>9.endsWith(string)</h4><ul>
+<li>判断是否以string结尾，返回Boolean</li>
+</ul>
+<h4 id="10-equals-string"><a href="#10-equals-string" class="headerlink" title="10.equals(string)"></a>10.equals(string)</h4><ul>
+<li>判断字符串与string是否长度相等且字符相等，返回Boolean</li>
+</ul>
+<h4 id="11-equalsIgnoreCase-string"><a href="#11-equalsIgnoreCase-string" class="headerlink" title="11.equalsIgnoreCase(string)"></a>11.equalsIgnoreCase(string)</h4><ul>
+<li>效果同上，但忽略大小写</li>
+</ul>
+<h4 id="12-compareTo-x3D-string"><a href="#12-compareTo-x3D-string" class="headerlink" title="12.compareTo*&#x3D;(string)"></a>12.compareTo*&#x3D;(string)</h4><ul>
+<li>将字符串与string按Unicode字典序比较，主字符串在string前输出负数，反之正数</li>
+</ul>
+<h4 id="13-toLowerCase"><a href="#13-toLowerCase" class="headerlink" title="13.toLowerCase()"></a>13.toLowerCase()</h4><ul>
+<li>转换成小写</li>
+</ul>
+<h4 id="14-toUpperCase"><a href="#14-toUpperCase" class="headerlink" title="14.toUpperCase()"></a>14.toUpperCase()</h4><ul>
+<li>转换成大写</li>
+</ul>
+<h4 id="15-spilt-string-int"><a href="#15-spilt-string-int" class="headerlink" title="15.spilt(string,int)"></a>15.spilt(string,int)</h4><ul>
+<li>用于分割字符串，返回一个数组，string为分隔符，可以用|定义多个分隔符如”,|.”，或是使用正则表达式</li>
+<li>int为分割次数上限，可以省略</li>
+</ul>
+<h4 id="16-String-format-String-format-Object-arg"><a href="#16-String-format-String-format-Object-arg" class="headerlink" title="16.String.format(String format,Object arg)"></a>16.String.format(String format,Object arg)</h4><ul>
+<li>format是特定的格式字符串<br><img src="/images/Java%E7%AC%94%E8%AE%B0/image-20220713133027509.png" alt="image-20220713133027509"><br><img src="/images/Java%E7%AC%94%E8%AE%B0/image-20220713133102557.png" alt="image-20220713133102557"><br><img src="/images/Java%E7%AC%94%E8%AE%B0/image-20220713133143492.png" alt="image-20220713133143492"><br><img src="/images/Java%E7%AC%94%E8%AE%B0/image-20220713133237925.png" alt="image-20220713133237925"><br><img src="/images/Java%E7%AC%94%E8%AE%B0/image-20220713133254172.png" alt="image-20220713133254172"></li>
+<li>object是待处理的对象</li>
+</ul>
+<p>17.matches(string reg)</p>
+<ul>
+<li>匹配正则表达式，返回Boolean</li>
+</ul>
+<h3 id="3-正则表达式"><a href="#3-正则表达式" class="headerlink" title="3.正则表达式"></a>3.正则表达式</h3><h4 id="1-元字符"><a href="#1-元字符" class="headerlink" title="1.元字符"></a>1.元字符</h4><p><img src="/images/Java%E7%AC%94%E8%AE%B0/image-20220713133538596.png" alt="image-20220713133538596"><br><img src="/images/Java%E7%AC%94%E8%AE%B0/image-20220713133555372.png" alt="image-20220713133555372"></p>
+<h4 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h4><ul>
+<li>本质上是一个字符串</li>
+</ul>
+<p><img src="/images/Java%E7%AC%94%E8%AE%B0/image-20220713140610665.png" alt="image-20220713140610665"><br><img src="/images/Java%E7%AC%94%E8%AE%B0/image-20220713140641849.png" alt="image-20220713140641849"><br><img src="/images/Java%E7%AC%94%E8%AE%B0/image-20220713140653194.png" alt="image-20220713140653194"></p>
+<h3 id="4-StringBuilder"><a href="#4-StringBuilder" class="headerlink" title="4.StringBuilder"></a>4.StringBuilder</h3><ul>
+<li>一个对象，初始长度为16个字符，会自动扩容</li>
+<li>使用toString()转换为字符串</li>
+</ul>
+<p>1.构造</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder <span class="keyword">var</span>=<span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>2.常用方法</p>
+<p>1.append(arg)</p>
+<ul>
+<li>在字符串末尾追加内容，可以是任何数据类型或对象</li>
+</ul>
+<p>2.insert(int,arg)</p>
+<ul>
+<li>向字符串中间插入内容，int须小于等于length</li>
+</ul>
+<p>3.delete(int start,int end)</p>
+<ul>
+<li>删除字符串中从start(包含)到end(不含)的内容</li>
+</ul>
+<h2 id="三、数组Array"><a href="#三、数组Array" class="headerlink" title="三、数组Array"></a>三、数组Array</h2><h3 id="1-声明方式-1"><a href="#1-声明方式-1" class="headerlink" title="1.声明方式"></a>1.声明方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先声明</span></span><br><span class="line"><span class="type">int</span> a[];</span><br><span class="line"><span class="type">int</span>[] a;</span><br><span class="line"><span class="comment">//再赋值</span></span><br><span class="line">a=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line"><span class="comment">//二合一</span></span><br><span class="line"><span class="type">int</span> a[]=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line"><span class="comment">//初始化的两种方式</span></span><br><span class="line"><span class="type">int</span> b[]=<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">int</span> b[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;；</span><br><span class="line"><span class="comment">//多维同理</span></span><br><span class="line"><span class="type">int</span> c[][];</span><br><span class="line"><span class="comment">//一起分配内存</span></span><br><span class="line">c=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>][<span class="number">5</span>];</span><br><span class="line"><span class="comment">//分别分配内存</span></span><br><span class="line"><span class="keyword">for</span>...n</span><br><span class="line">	c[n]=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line"><span class="comment">//二合一</span></span><br><span class="line"><span class="type">int</span> d[][]=&#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-常用方法-1"><a href="#2-常用方法-1" class="headerlink" title="2.常用方法"></a>2.常用方法</h3><h4 id="1-length-1"><a href="#1-length-1" class="headerlink" title="1.length"></a>1.length</h4><ul>
+<li>返回长度</li>
+</ul>
+<h4 id="2-fill-int-a-int-start-int-end-int-value"><a href="#2-fill-int-a-int-start-int-end-int-value" class="headerlink" title="2.fill(int[] a,int start,int end,int value)"></a>2.fill(int[] a,int start,int end,int value)</h4><ul>
+<li>把从start位置(包含)到end位置(不含)的元素替换为value</li>
+<li>只有a和value参数：把数组中的所有元素替换为value</li>
+<li>start等于end时什么都不做</li>
+</ul>
+<h4 id="3-Arrays-sort-array"><a href="#3-Arrays-sort-array" class="headerlink" title="3.Arrays.sort(array)"></a>3.Arrays.sort(array)</h4><ul>
+<li>按字典序排序</li>
+</ul>
+<h4 id="4-copyOf-array-int"><a href="#4-copyOf-array-int" class="headerlink" title="4.copyOf(array,int)"></a>4.copyOf(array,int)</h4><ul>
+<li>复制一个数组，数组长度为int</li>
+<li>长度小于arr.length则将多余的截去</li>
+<li>长度大于arr.length，多余部分int填0，char填null</li>
+</ul>
+<h4 id="5-copyOfRange-array-int-start-int-end"><a href="#5-copyOfRange-array-int-start-int-end" class="headerlink" title="5.copyOfRange(array,int start,int end)"></a>5.copyOfRange(array,int start,int end)</h4><ul>
+<li>把从start位置(包含)到end位置(不含)的元素复制到新的数组</li>
+</ul>
+<h4 id="6-binarySearch-array-key-start-end"><a href="#6-binarySearch-array-key-start-end" class="headerlink" title="6.binarySearch(array,key,start,end)"></a>6.binarySearch(array,key,start,end)</h4><ul>
+<li>使用二分查找搜索数组从start位置(包含)到end位置(不含)的元素，返回下标</li>
+<li>找不到返回-1或“-(插入点)”(例如在1,2,4中寻找3,4的下标是2，3在4的左边，所以返回-2)</li>
+<li>使用前应对数组进行排序，否则结果未知，有多个相同值也无法确定</li>
+<li>start与end可以省略</li>
+</ul>
+<h3 id="3-排序算法"><a href="#3-排序算法" class="headerlink" title="3.排序算法"></a>3.排序算法</h3><p>Todo</p>
+<h2 id="四、类与对象"><a href="#四、类与对象" class="headerlink" title="四、类与对象"></a>四、类与对象</h2><h3 id="1-修饰符"><a href="#1-修饰符" class="headerlink" title="1.修饰符"></a>1.修饰符</h3><table>
+<thead>
+<tr>
+<th></th>
+<th align="center">public</th>
+<th align="center">protected</th>
+<th align="center">private</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>本类</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td>同包的类或子类</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>其他包的类或子类</td>
+<td align="center">√</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="2-this"><a href="#2-this" class="headerlink" title="2.this"></a>2.this</h3><ul>
+<li>成员方法中的this指的是类对象本身</li>
+</ul>
+<h3 id="3-静态static"><a href="#3-静态static" class="headerlink" title="3.静态static"></a>3.静态static</h3><ul>
+<li><p>静态方法中不能使用this</p>
+</li>
+<li><p>静态方法中不能调用非静态方法</p>
+</li>
+<li><p>不能在方法中声明静态变量</p>
+</li>
+</ul>
+<p>声明静态变量的一种方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Name</span>&#123;</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> method&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-类的主方法"><a href="#4-类的主方法" class="headerlink" title="4.类的主方法"></a>4.类的主方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Name</span> &#123; </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123; <span class="comment">// 主方法，定义方法须与样例完全一致</span></span><br><span class="line">		<span class="comment">//do something</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>主方法是静态的，其调用的方法也要是静态的</li>
+<li>主方法没有返回值</li>
+<li>主方法的参数是个数组，由args[n]获取；个数可以由args.length获取</li>
+<li>主方法的参数可以由编辑器设置</li>
+</ul>
+<h3 id="5-构造"><a href="#5-构造" class="headerlink" title="5.构造"></a>5.构造</h3><ul>
+<li>是一个public方法，与类名同名，可以有多个不同的重载</li>
+<li>创建对象时使用new</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ClassName Name=<span class="keyword">new</span> <span class="title class_">ClassName</span>(<span class="string">&quot;args&quot;</span>)；</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-对象的比较"><a href="#6-对象的比较" class="headerlink" title="6.对象的比较"></a>6.对象的比较</h3><ul>
+<li><p>以string为例</p>
+<ul>
+<li><p>使用&#x3D;&#x3D;比较：比较的是对象引用的地址</p>
+</li>
+<li><p>使用equals()比较：比较的是内容</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-对象的销毁"><a href="#7-对象的销毁" class="headerlink" title="7.对象的销毁"></a>7.对象的销毁</h3><ul>
+<li><p>销毁方法</p>
+<ul>
+<li><p>超过作用域</p>
+</li>
+<li><p>将对象赋值为null</p>
+</li>
+</ul>
+</li>
+<li><p>只能销毁由new创建的对象</p>
+</li>
+<li><p>类内使用protected void finalize()方法，类似cpp中的析构函数</p>
+</li>
+<li><p>因对象销毁时间未知，所以finalize()函数不一定执行，可以使用System.gc()强制启动回收来销毁对象</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/07/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-1%E2%80%94%E2%80%94Cocos%E7%9B%B8%E5%85%B3/" rel="prev" title="游戏开发笔记#1——Cocos相关">
+                  <i class="fa fa-chevron-left"></i> 游戏开发笔记#1——Cocos相关
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/13/%E7%A6%BB%E6%95%A3%E7%AC%94%E8%AE%B0/" rel="next" title="离散笔记">
+                  离散笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fire Egg</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">235k</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
