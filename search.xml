@@ -2108,7 +2108,7 @@
 <li>引用的大小是所<strong>引用对象的大小</strong>，指针的大小是<strong>指针本身大小</strong>，通常是<strong>4&#x2F;8字节</strong>。</li>
 <li>引用和指针的+自增运算符意义不同（一整块vs一个内存地址）。</li>
 </ul>
-<p>指针是指向内存地址的实体，引用是内存块的别名，<strong>底层是const指针</strong></p>
+<p>指针是指向内存地址的实体，引用是内存块的别名，<strong>在编程语言层面可以视作const指针</strong></p>
 <h5 id="引用作为函数返回值"><a href="#引用作为函数返回值" class="headerlink" title="引用作为函数返回值"></a>引用作为函数返回值</h5><ul>
 <li><p><strong>不能返回局部变量的引用</strong>。离开作用域变量会被销毁，指向的东西不存在了。</p>
 </li>
@@ -2761,7 +2761,7 @@
 <p>（1）typeid运算符，该运算符返回其表达式或类型名的实际类型。返回指针和引用所指的实际类型；</p>
 <p>（2）dynamic_cast运算符，该运算符将基类的指针或引用安全地转换为派生类类型的指针或引用。</p>
 <p>为了获得一个对象的类型可以使用typeid函数，该函数反回一个对type_info类对象的引用，要使用typeid必须使用头文件<code>&lt;typeinfo&gt;</code>，因为typeid是一个返回类型为typ_info的引用的函数</p>
-<p><img src="/images/%E5%85%AB%E8%82%A1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAxNjI4,size_16,color_FFFFFF,t_70#pic_center.png" alt="img"></p>
+<p><img src="/images/%E5%85%AB%E8%82%A1/RTTI.png" alt="img"></p>
 <h4 id="内存碎片"><a href="#内存碎片" class="headerlink" title="内存碎片"></a>内存碎片</h4><p>首先，我们要理解<strong>内存碎片的类型</strong>：内存碎片大致分为两类，外部碎片和内部碎片。</p>
 <ul>
 <li>外部碎片是因为内存中分布了许多小的、不连续的空闲区域，导致无法满足较大的内存分配请求。</li>
@@ -4023,13 +4023,115 @@
 </li>
 <li><p>AssetBundle</p>
 <ul>
-<li><p>优化：封装操作，加入引用计数器（类似智能指针），计数为0在随机秒数范围内销毁</p>
+<li>优化：封装操作，加入引用计数器（类似智能指针），计数为0在随机秒数范围内销毁</li>
+</ul>
+  <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CreateAssetBundles</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">MenuItem(<span class="string">&quot;Assets/Build AssetBundles&quot;</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BuildAllAssetBundles</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span> dir = <span class="string">&quot;AssetBundles&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (Directory.Exists(dir) == <span class="literal">false</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Directory.CreateDirectory(dir);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//BuildTarget 选择build出来的AB包要使用的平台</span></span><br><span class="line">        BuildPipeline.BuildAssetBundles(dir, BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>加载方法</p>
+<ul>
+<li>AssetBundle.LoadFromFile 从本地加载</li>
+<li>AssetBundle.LoadFromMemory 从内存加载</li>
+<li><a href="WWW.LoadFromCacheOrDownload">WWW.LoadFromCacheOrDownload</a> 下载后放在缓存中备用(该方法逐渐被弃用)</li>
+<li>UnityWebRequestAssetBundle 从服务器下载</li>
+</ul>
 </li>
-<li><p>&#96;&#96;&#96;c#<br>  public class CreateAssetBundles<br>  {<br>  [MenuItem(“Assets&#x2F;Build AssetBundles”)]<br>  static void BuildAllAssetBundles()<br>  {<br>      string dir &#x3D; “AssetBundles”;<br>      if (Directory.Exists(dir) &#x3D;&#x3D; false)<br>      {<br>          Directory.CreateDirectory(dir);<br>      }<br>      &#x2F;&#x2F;BuildTarget 选择build出来的AB包要使用的平台<br>      BuildPipeline.BuildAssetBundles(dir, BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);<br>  }<br>  }</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    - 加载方法</span><br><span class="line"></span><br><span class="line">        - AssetBundle.LoadFromFile 从本地加载</span><br><span class="line">        - AssetBundle.LoadFromMemory 从内存加载</span><br><span class="line">        - WWW.LoadFromCacheOrDownload 下载后放在缓存中备用(该方法逐渐被弃用)</span><br><span class="line">        - UnityWebRequestAssetBundle 从服务器下载</span><br><span class="line"></span><br><span class="line">    - 加载资源</span><br><span class="line"></span><br><span class="line">        - AssetBundle.LoadAsset(assetName)</span><br><span class="line">        - AssetBundle.LoadAllAssets() 加载AB包中所有的对象，不包含依赖的包</span><br><span class="line">        - AssetBundle.LoadAssetAsync() 异步加载，加载较大资源的时候</span><br><span class="line">        - AssetBundle.LoadAllAssetsAsync() 异步加载全部资源</span><br><span class="line">        - AssetBundle.LoadAssetWithSubAssets 加载资源及其子资源</span><br><span class="line"></span><br><span class="line">    - 卸载资源</span><br><span class="line"></span><br><span class="line">        - AssetBundle.Unload(true) //卸载AB文件的内存镜像，且包含所有Load创建出来的对象</span><br><span class="line">        - AssetBundle.Unload(false) //卸载AB文件的内存镜像，但是除了Load创建出来的对象</span><br><span class="line">        - Reources.UnloadAsset(Object) //释放已加载的资源Object</span><br><span class="line">        - Resources.UnloadUnusedAssets //卸载所有没有被场景引用的资源对象</span><br><span class="line">          </span><br><span class="line"></span><br><span class="line">##### 资源路径</span><br><span class="line"></span><br><span class="line">Resource：加密</span><br><span class="line"></span><br><span class="line">StreamingAsset：不加密</span><br><span class="line"></span><br><span class="line">AssetBundle：</span><br><span class="line"></span><br><span class="line">https://blog.csdn.net/appppppen/article/details/51396256</span><br><span class="line"></span><br><span class="line">![img](/images/八股/20151207164623779.jpeg)</span><br><span class="line"></span><br><span class="line">#### 网络编程</span><br><span class="line"></span><br><span class="line">socket</span><br><span class="line">异步收发数据-双队列，多线程</span><br><span class="line">请求-顺序发，异步发，混合发，合并发</span><br><span class="line"></span><br><span class="line">#### 帧同步与状态同步	</span><br><span class="line"></span><br><span class="line">|                    | 状态同步                                                     | 帧同步                                                       |</span><br><span class="line">| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |</span><br><span class="line">| 流量               | 相对高                                                       | 相对低                                                       |</span><br><span class="line">| 回放（离线）       | 可以支持回放，但是逻辑比较复杂，需要不断记录状态信息，同时回放时候需要读取合适的时间。回放文件大 | 本身收集了所有玩家的输入信息进行逻辑推进，天然支持回放，且回放文件比较小 |</span><br><span class="line">| 回放（实时）       | 相对容易，可以方便的记录快照信息，并按照录制内容随时播放     | 比较复杂，客户端需要本地对全场状态进行序列化，才能回到目标时间。播完回放后还需要加速追上实时游戏状态 |</span><br><span class="line">| 安全性             | 服务器实现逻辑，安全性高                                     | 逻辑在客户端，反外挂压力大、无法避免开图挂                   |</span><br><span class="line">| 服务器压力         | 大                                                           | 小                                                           |</span><br><span class="line">| 战斗校验           | 协议加密，内存混肴，误差校验，无法彻底解决。                 | 服务器可以重启跑一遍战斗。                                   |</span><br><span class="line">| 网络卡顿的表现     | 瞬移，回位，莫名掉血                                         | 战斗卡顿                                                     |</span><br><span class="line">| 中途加入和断线重连 | 容易。由于实时记录了各个对象的状态信息，所以重连的时候，直接创建这些对象，并同步信息即可 | 比较复杂。可以在断线的时候，通过快捷播放服务器同步的帧数据来快速跟上游戏(追帧，太慢了就用**内存快照**) |</span><br><span class="line">| 实现               | 调优状态同步方式，客户端需要做插值处理。                     | 客户端按照单机方式开发，保证逻辑层和表现层分离。逻辑层不要用到浮点数，不要用不确定顺序的逻辑结构。对于物理引擎和浮点数计算要不能使用Unity的。 |</span><br><span class="line">| 网络延迟适应性     | 适应性较高，方便做各种插值优化。当然高延迟下，也容易产生位置突变 | 要求较低的延迟。如果延迟较高，所有玩家体验都不好。即使采用乐观帧锁定优化，高延迟下也容易产生卡顿 |</span><br><span class="line"></span><br><span class="line">实现帧同步的流程一般是：</span><br><span class="line"></span><br><span class="line">1.  同步随机数种子。(一般游戏中都设计随机数的使用， 通过同步随机数种子，可以保持随机数一致性)</span><br><span class="line">2.  客户端上传操作指令。(指令包括游戏操作和当前帧索引)</span><br><span class="line">3.  服务器广播所有客户端的操作。(如果没有操作， 也要广播空指令来驱动游戏帧前进)。</span><br><span class="line"></span><br><span class="line">断线检测：**心跳包**</span><br><span class="line"></span><br><span class="line">##### 定点数</span><br><span class="line"></span><br><span class="line">```c#</span><br><span class="line">class FixVal&#123;</span><br><span class="line"></span><br><span class="line">    const int total_bit_cnt = 64;//总位数</span><br><span class="line">    const int f_bit_cnt = 16;//小数位数</span><br><span class="line">    const int i_bit_cnt = total_bit_cnt - f_bit_cnt;//整数位数</span><br><span class="line">    const long f_mask = (long)(ulong.MaxValue &gt;&gt; i_bit_cnt);//小数部分掩码</span><br><span class="line">    const long i_mask = (long)(-1L &amp; ~f_mask);//整数部分掩码</span><br><span class="line">    const long f_range = f_mask + 1;//进位范围</span><br><span class="line">    public const long min_val = long.MinValue &gt;&gt; f_bit_cnt;//最小值</span><br><span class="line">    public const long max_val = long.MaxValue &gt;&gt; f_bit_cnt;//最大值</span><br><span class="line">    long mRaw;</span><br><span class="line"></span><br><span class="line">    public FixVal(int intVal):this(((long)intVal) &lt;&lt; f_bit_cnt)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public FixVal(long raw)&#123;</span><br><span class="line">        mRaw = raw;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public long GetRaw()&#123;</span><br><span class="line">        return mRaw;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static FixVal operator +(FixVal a, FixVal b)&#123;</span><br><span class="line">        return new FixVal(a.mRaw + b.mRaw);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static FixVal operator -(FixVal a, FixVal b)&#123;</span><br><span class="line">        return new FixVal(a.mRaw - b.mRaw);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static FixVal operator *(FixVal a, FixVal b)&#123;</span><br><span class="line">        return new FixVal((a.mRaw * b.mRaw + (f_range &gt;&gt; 1)) &gt;&gt; f_bit_cnt);//结果右移，因为是小数相乘</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static FixVal operator /(FixVal a, FixVal b)&#123;</span><br><span class="line">        return new FixVal((a.mRaw &lt;&lt; f_bit_cnt) / b.mRaw);//被除数左移，因为是小数相除</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static explicit operator double (FixVal fixVal)&#123;</span><br><span class="line">        return (double)(fixVal.mRaw &gt;&gt; f_bit_cnt) + (fixVal.mRaw &amp; f_mask) / (double)f_range;//右移得到整数部分，取与除以进位得到小数范围</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>加载资源</p>
+<ul>
+<li>AssetBundle.LoadAsset(assetName)</li>
+<li>AssetBundle.LoadAllAssets() 加载AB包中所有的对象，不包含依赖的包</li>
+<li>AssetBundle.LoadAssetAsync() 异步加载，加载较大资源的时候</li>
+<li>AssetBundle.LoadAllAssetsAsync() 异步加载全部资源</li>
+<li>AssetBundle.LoadAssetWithSubAssets 加载资源及其子资源</li>
+</ul>
+</li>
+<li><p>卸载资源</p>
+<ul>
+<li>AssetBundle.Unload(true) &#x2F;&#x2F;卸载AB文件的内存镜像，且包含所有Load创建出来的对象</li>
+<li>AssetBundle.Unload(false) &#x2F;&#x2F;卸载AB文件的内存镜像，但是除了Load创建出来的对象</li>
+<li>Reources.UnloadAsset(Object) &#x2F;&#x2F;释放已加载的资源Object</li>
+<li>Resources.UnloadUnusedAssets &#x2F;&#x2F;卸载所有没有被场景引用的资源对象</li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+<h5 id="资源路径"><a href="#资源路径" class="headerlink" title="资源路径"></a>资源路径</h5><p>Resource：加密</p>
+<p>StreamingAsset：不加密</p>
+<p>AssetBundle：</p>
+<p><a href="https://blog.csdn.net/appppppen/article/details/51396256">https://blog.csdn.net/appppppen/article/details/51396256</a></p>
+<p><img src="/images/%E5%85%AB%E8%82%A1/20151207164623779.jpeg" alt="img"></p>
+<h4 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h4><p>socket<br>异步收发数据-双队列，多线程<br>请求-顺序发，异步发，混合发，合并发</p>
+<h4 id="帧同步与状态同步"><a href="#帧同步与状态同步" class="headerlink" title="帧同步与状态同步"></a>帧同步与状态同步</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>状态同步</th>
+<th>帧同步</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>流量</td>
+<td>相对高</td>
+<td>相对低</td>
+</tr>
+<tr>
+<td>回放（离线）</td>
+<td>可以支持回放，但是逻辑比较复杂，需要不断记录状态信息，同时回放时候需要读取合适的时间。回放文件大</td>
+<td>本身收集了所有玩家的输入信息进行逻辑推进，天然支持回放，且回放文件比较小</td>
+</tr>
+<tr>
+<td>回放（实时）</td>
+<td>相对容易，可以方便的记录快照信息，并按照录制内容随时播放</td>
+<td>比较复杂，客户端需要本地对全场状态进行序列化，才能回到目标时间。播完回放后还需要加速追上实时游戏状态</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>服务器实现逻辑，安全性高</td>
+<td>逻辑在客户端，反外挂压力大、无法避免开图挂</td>
+</tr>
+<tr>
+<td>服务器压力</td>
+<td>大</td>
+<td>小</td>
+</tr>
+<tr>
+<td>战斗校验</td>
+<td>协议加密，内存混肴，误差校验，无法彻底解决。</td>
+<td>服务器可以重启跑一遍战斗。</td>
+</tr>
+<tr>
+<td>网络卡顿的表现</td>
+<td>瞬移，回位，莫名掉血</td>
+<td>战斗卡顿</td>
+</tr>
+<tr>
+<td>中途加入和断线重连</td>
+<td>容易。由于实时记录了各个对象的状态信息，所以重连的时候，直接创建这些对象，并同步信息即可</td>
+<td>比较复杂。可以在断线的时候，通过快捷播放服务器同步的帧数据来快速跟上游戏(追帧，太慢了就用<strong>内存快照</strong>)</td>
+</tr>
+<tr>
+<td>实现</td>
+<td>调优状态同步方式，客户端需要做插值处理。</td>
+<td>客户端按照单机方式开发，保证逻辑层和表现层分离。逻辑层不要用到浮点数，不要用不确定顺序的逻辑结构。对于物理引擎和浮点数计算要不能使用Unity的。</td>
+</tr>
+<tr>
+<td>网络延迟适应性</td>
+<td>适应性较高，方便做各种插值优化。当然高延迟下，也容易产生位置突变</td>
+<td>要求较低的延迟。如果延迟较高，所有玩家体验都不好。即使采用乐观帧锁定优化，高延迟下也容易产生卡顿</td>
+</tr>
+</tbody></table>
+<p>实现帧同步的流程一般是：</p>
+<ol>
+<li>同步随机数种子。(一般游戏中都设计随机数的使用， 通过同步随机数种子，可以保持随机数一致性)</li>
+<li>客户端上传操作指令。(指令包括游戏操作和当前帧索引)</li>
+<li>服务器广播所有客户端的操作。(如果没有操作， 也要广播空指令来驱动游戏帧前进)。</li>
+</ol>
+<p>断线检测：<strong>心跳包</strong></p>
+<h5 id="定点数"><a href="#定点数" class="headerlink" title="定点数"></a>定点数</h5><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">FixVal</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">int</span> total_bit_cnt = <span class="number">64</span>;<span class="comment">//总位数</span></span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">int</span> f_bit_cnt = <span class="number">16</span>;<span class="comment">//小数位数</span></span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">int</span> i_bit_cnt = total_bit_cnt - f_bit_cnt;<span class="comment">//整数位数</span></span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">long</span> f_mask = (<span class="built_in">long</span>)(<span class="built_in">ulong</span>.MaxValue &gt;&gt; i_bit_cnt);<span class="comment">//小数部分掩码</span></span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">long</span> i_mask = (<span class="built_in">long</span>)(<span class="number">-1L</span> &amp; ~f_mask);<span class="comment">//整数部分掩码</span></span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">long</span> f_range = f_mask + <span class="number">1</span>;<span class="comment">//进位范围</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">const</span> <span class="built_in">long</span> min_val = <span class="built_in">long</span>.MinValue &gt;&gt; f_bit_cnt;<span class="comment">//最小值</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">const</span> <span class="built_in">long</span> max_val = <span class="built_in">long</span>.MaxValue &gt;&gt; f_bit_cnt;<span class="comment">//最大值</span></span><br><span class="line">    <span class="built_in">long</span> mRaw;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FixVal</span>(<span class="params"><span class="built_in">int</span> intVal</span>):<span class="title">this</span>(<span class="params">((<span class="built_in">long</span></span>)intVal) &lt;&lt; f_bit_cnt)</span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FixVal</span>(<span class="params"><span class="built_in">long</span> raw</span>)</span>&#123;</span><br><span class="line">        mRaw = raw;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="built_in">long</span> <span class="title">GetRaw</span>()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mRaw;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> FixVal <span class="keyword">operator</span> +(FixVal a, FixVal b)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> FixVal(a.mRaw + b.mRaw);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> FixVal <span class="keyword">operator</span> -(FixVal a, FixVal b)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> FixVal(a.mRaw - b.mRaw);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> FixVal <span class="keyword">operator</span> *(FixVal a, FixVal b)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> FixVal((a.mRaw * b.mRaw + (f_range &gt;&gt; <span class="number">1</span>)) &gt;&gt; f_bit_cnt);<span class="comment">//结果右移，因为是小数相乘</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> FixVal <span class="keyword">operator</span> /(FixVal a, FixVal b)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> FixVal((a.mRaw &lt;&lt; f_bit_cnt) / b.mRaw);<span class="comment">//被除数左移，因为是小数相除</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">explicit</span> <span class="keyword">operator</span> <span class="title">double</span> (<span class="params">FixVal fixVal</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">double</span>)(fixVal.mRaw &gt;&gt; f_bit_cnt) + (fixVal.mRaw &amp; f_mask) / (<span class="built_in">double</span>)f_range;<span class="comment">//右移得到整数部分，取与除以进位得到小数范围</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h4><p>二进制传输</p>
 <figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">Person</span> &#123; </span><br><span class="line"></span><br><span class="line">  <span class="keyword">required</span> <span class="type">string</span> name = <span class="number">1</span>;  <span class="comment">// (位置1)</span></span><br><span class="line">  <span class="keyword">required</span> <span class="type">int32</span> id = <span class="number">2</span>;  </span><br><span class="line">  <span class="keyword">optional</span> <span class="type">string</span> email = <span class="number">3</span>;  <span class="comment">// (位置2)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">enum </span><span class="title class_">PhoneType</span> &#123;  <span class="comment">//电话类型枚举值 </span></span><br><span class="line">    MOBILE = <span class="number">0</span>;  <span class="comment">//手机号  </span></span><br><span class="line">    HOME = <span class="number">1</span>;    <span class="comment">//家庭联系电话</span></span><br><span class="line">    WORK = <span class="number">2</span>;    <span class="comment">//工作联系电话</span></span><br><span class="line">  &#125; </span><br><span class="line">  </span><br><span class="line">  <span class="comment">//电话号码phone消息体</span></span><br><span class="line">  <span class="comment">//组成包括号码number、电话类型 type</span></span><br><span class="line">  <span class="keyword">message </span><span class="title class_">PhoneNumber</span> &#123;</span><br><span class="line">    <span class="keyword">required</span> <span class="type">string</span> number = <span class="number">1</span>;    </span><br><span class="line">    <span class="keyword">optional</span> PhoneType type = </span><br><span class="line">          <span class="number">2</span> [default = HOME]; <span class="comment">// (位置3)</span></span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">repeated</span> PhoneNumber phones = <span class="number">4</span>; <span class="comment">// (位置4)</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 通讯录消息体，包括一个Person类的people</span></span><br><span class="line"><span class="keyword">message </span><span class="title class_">AddressBook</span> &#123; </span><br><span class="line">  <span class="keyword">repeated</span> Person people = <span class="number">1</span>; </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -4049,15 +4151,15 @@
 </li>
 <li><p>Culling Mask：剔除遮罩，选择所要显示的layer。</p>
 </li>
-<li><p>Projection：投射方式。<br>　　Perspective：透视。摄像机将用透视的方式来渲染游戏对象。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　<strong>Field of view</strong>：视野范围。用于控制摄像机的视角宽度以及纵向的角度尺寸。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Orthographic：正交。摄像机将用无透视的方式来渲染游戏对象。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Size：大小。用于控制正交模式摄像机的视口大小。</p>
+<li><p>Projection：投射方式。<br>　　Perspective：透视。摄像机将用透视的方式来渲染游戏对象。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　<strong>Field of view</strong>：视野范围。用于控制摄像机的视角宽度以及纵向的角度尺寸。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Orthographic：正交。摄像机将用无透视的方式来渲染游戏对象。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Size：大小。用于控制正交模式摄像机的视口大小。</p>
 </li>
-<li><p>Clipping Planes： 剪裁平面。摄像机开始渲染与停止渲染之间的距离。<br>　　Near：近点。摄像机开始渲染的最近的点。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Far：远点。摄像机开始渲染的最远的点。</p>
+<li><p>Clipping Planes： 剪裁平面。摄像机开始渲染与停止渲染之间的距离。<br>　　Near：近点。摄像机开始渲染的最近的点。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Far：远点。摄像机开始渲染的最远的点。</p>
 </li>
 <li><p>Viewport Rect：标准视图矩形。用四个数值来控制摄像机的视图将绘制在屏幕的位置和大小，使用的是屏幕坐标系，数值在0~1之间。坐标系原点在左下角。</p>
 </li>
 <li><p>Depth：深度。用于控制摄像机的渲染顺序，较大值的摄像机将被渲染在较小值的摄像机之上。</p>
 </li>
-<li><p>Rendering Path：渲染路径。用于指定摄像机的渲染方法。<br>　　Use Player Settings：使用Project Settings–&gt;Player中的设置。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Vertex Lit：顶点光照。摄像机将对所有的游戏对象座位顶点光照对象来渲染。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Forward：快速渲染。摄像机将所有游戏对象将按每种材质一个通道的方式来渲染。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Deferred Lighting：延迟光照。摄像机先对所有游戏对象进行一次无光照渲染，用屏幕空间大小的Buffer保存几何体的深度、法线已经高光强度，生成的Buffer将用于计算光照，同时生成一张新的光照信息Buffer。最后所有的游戏对象会被再次渲染，渲染时叠加光照信息Buffer的内容。</p>
+<li><p>Rendering Path：渲染路径。用于指定摄像机的渲染方法。<br>　　Use Player Settings：使用Project Settings–&gt;Player中的设置。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Vertex Lit：顶点光照。摄像机将对所有的游戏对象座位顶点光照对象来渲染。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Forward：快速渲染。摄像机将所有游戏对象将按每种材质一个通道的方式来渲染。<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Deferred Lighting：延迟光照。摄像机先对所有游戏对象进行一次无光照渲染，用屏幕空间大小的Buffer保存几何体的深度、法线已经高光强度，生成的Buffer将用于计算光照，同时生成一张新的光照信息Buffer。最后所有的游戏对象会被再次渲染，渲染时叠加光照信息Buffer的内容。</p>
 </li>
 <li><p>Target Texture: 目标纹理。用于将摄像机视图输出并渲染到屏幕。一般用于制作导航图或者画中画等效果。</p>
 </li>
